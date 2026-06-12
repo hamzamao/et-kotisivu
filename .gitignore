@@ -2,6 +2,11 @@
 .DS_Store
 .AppleDouble
 .LSOverride
+._*
+.Spotlight-V100
+.Trashes
+.fseventsd
+.TemporaryItems
 
 # Editorien roskat (esim. VS Code)
 .vscode/
