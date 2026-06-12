@@ -1,0 +1,12 @@
+# macOS järjestelmätiedostot
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Editorien roskat (esim. VS Code)
+.vscode/
+.idea/
+
+# Välimuistit ja muut
+Thumbs.db
+Icon?
