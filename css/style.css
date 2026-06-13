@@ -1,0 +1,299 @@
+/* ET Digiapu — yksi tyylitiedosto koko sivustolle.
+   Suunniteltu luettavaksi myös vanhemmilla laitteilla ja heikommalla näöllä:
+   iso teksti, vahva kontrasti, suuret painikkeet. */
+
+:root {
+  --sininen: #1f3a5f;
+  --sininen-tumma: #16293f;
+  --korostus: #b34a00;
+  --korostus-tumma: #8f3b00;
+  --tausta: #faf8f4;
+  --valkoinen: #ffffff;
+  --teksti: #26211c;
+  --teksti-vaalea: #f5f1ea;
+  --reunus: #ddd5c8;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 18px;
+}
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    "Helvetica Neue", Arial, sans-serif;
+  font-size: 1rem;
+  line-height: 1.65;
+  color: var(--teksti);
+  background: var(--tausta);
+}
+
+h1, h2, h3 {
+  line-height: 1.25;
+  color: var(--sininen);
+}
+
+h1 { font-size: 2.1rem; margin: 0 0 0.5em; }
+h2 { font-size: 1.5rem; margin: 1.6em 0 0.5em; }
+h3 { font-size: 1.2rem; margin: 1.2em 0 0.4em; }
+
+p { margin: 0 0 1em; }
+
+a {
+  color: var(--sininen);
+  text-decoration-thickness: 2px;
+  text-underline-offset: 3px;
+}
+
+a:focus-visible,
+button:focus-visible {
+  outline: 3px solid var(--korostus);
+  outline-offset: 2px;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+.sisalto {
+  max-width: 60rem;
+  margin: 0 auto;
+  padding: 0 1.25rem;
+}
+
+/* --- Ylätunniste ja navigaatio --- */
+
+.ylatunniste {
+  background: var(--sininen);
+  color: var(--teksti-vaalea);
+  padding: 0.75rem 0;
+}
+
+.ylatunniste .sisalto {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem 1.5rem;
+}
+
+.logo {
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: var(--valkoinen);
+  text-decoration: none;
+}
+
+.navigaatio ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem 1.25rem;
+}
+
+.navigaatio a {
+  display: inline-block;
+  padding: 0.5rem 0.25rem;
+  color: var(--teksti-vaalea);
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.navigaatio a:hover,
+.navigaatio a:focus {
+  text-decoration: underline;
+}
+
+.navigaatio a[aria-current="page"] {
+  border-bottom: 3px solid var(--korostus);
+}
+
+/* --- Etusivun nosto --- */
+
+.nosto {
+  background: var(--valkoinen);
+  border-bottom: 1px solid var(--reunus);
+  padding: 3rem 0;
+  text-align: center;
+}
+
+.nosto p.iso {
+  font-size: 1.2rem;
+  max-width: 38rem;
+  margin: 0 auto 1.5em;
+}
+
+/* --- Painikkeet ja puhelinnumero --- */
+
+.nappi {
+  display: inline-block;
+  background: var(--korostus);
+  color: var(--valkoinen);
+  font-size: 1.15rem;
+  font-weight: 700;
+  text-decoration: none;
+  padding: 0.9rem 1.8rem;
+  border-radius: 8px;
+  min-height: 48px;
+}
+
+.nappi:hover,
+.nappi:focus {
+  background: var(--korostus-tumma);
+}
+
+.nappi.toissijainen {
+  background: var(--sininen);
+}
+
+.nappi.toissijainen:hover,
+.nappi.toissijainen:focus {
+  background: var(--sininen-tumma);
+}
+
+.puhelin-iso {
+  display: inline-block;
+  font-size: 1.9rem;
+  font-weight: 800;
+  color: var(--sininen);
+  text-decoration: none;
+  margin: 0.25em 0;
+}
+
+.puhelin-iso:hover,
+.puhelin-iso:focus {
+  text-decoration: underline;
+}
+
+/* --- Kortit --- */
+
+.korttilista {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
+  gap: 1.25rem;
+  padding: 0;
+  margin: 1.5rem 0;
+  list-style: none;
+}
+
+.kortti {
+  background: var(--valkoinen);
+  border: 1px solid var(--reunus);
+  border-radius: 10px;
+  padding: 1.25rem 1.25rem 1.5rem;
+}
+
+.kortti h3 {
+  margin-top: 0;
+}
+
+.kortti .hinta {
+  display: block;
+  font-size: 1.3rem;
+  font-weight: 800;
+  color: var(--korostus);
+  margin-top: 0.75rem;
+}
+
+/* --- Taulukot ja lomakkeet --- */
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background: var(--valkoinen);
+  margin: 1rem 0 1.5rem;
+}
+
+th, td {
+  text-align: left;
+  padding: 0.75rem 1rem;
+  border: 1px solid var(--reunus);
+}
+
+th {
+  background: var(--sininen);
+  color: var(--valkoinen);
+}
+
+form {
+  max-width: 28rem;
+}
+
+label {
+  display: block;
+  font-weight: 700;
+  margin: 1rem 0 0.25rem;
+}
+
+input, textarea {
+  width: 100%;
+  font: inherit;
+  padding: 0.7rem;
+  border: 2px solid var(--sininen);
+  border-radius: 6px;
+  background: var(--valkoinen);
+}
+
+form .nappi {
+  border: none;
+  cursor: pointer;
+  margin-top: 1.25rem;
+}
+
+/* Vain ruudunlukijoille näkyvä teksti */
+.nakymaton {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* --- Korostuslaatikko --- */
+
+.huomio {
+  background: #eef3fa;
+  border-left: 6px solid var(--sininen);
+  border-radius: 0 8px 8px 0;
+  padding: 1rem 1.25rem;
+  margin: 1.5rem 0;
+}
+
+/* --- Alatunniste --- */
+
+.alatunniste {
+  background: var(--sininen-tumma);
+  color: var(--teksti-vaalea);
+  margin-top: 3rem;
+  padding: 2rem 0;
+}
+
+.alatunniste a {
+  color: var(--valkoinen);
+}
+
+.alatunniste p {
+  margin: 0.25em 0;
+}
+
+main {
+  padding: 2rem 0 1rem;
+}
+
+@media (max-width: 40rem) {
+  html { font-size: 17px; }
+  h1 { font-size: 1.7rem; }
+  .nosto { padding: 2rem 0; }
+  .puhelin-iso { font-size: 1.6rem; }
+}

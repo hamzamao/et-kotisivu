@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="fi">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Yhteystiedot – ET Digiapu</title>
+  <meta name="description" content="Soita ja sovi kotikäynti: 040 123 4567. Voit myös jättää soittopyynnön, niin soitan sinulle takaisin. Palvelualue [Kaupunki] ja lähialueet.">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header class="ylatunniste">
+    <div class="sisalto">
+      <a class="logo" href="index.html">ET Digiapu</a>
+      <nav class="navigaatio" aria-label="Päävalikko">
+        <ul>
+          <li><a href="index.html">Etusivu</a></li>
+          <li><a href="palvelut.html">Palvelut</a></li>
+          <li><a href="hinnat.html">Hinnat</a></li>
+          <li><a href="minusta.html">Minusta</a></li>
+          <li><a href="lahjakortti.html">Lahjakortti</a></li>
+          <li><a href="yhteys.html" aria-current="page">Yhteystiedot</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <div class="sisalto">
+      <h1>Ota yhteyttä</h1>
+
+      <p>Helpoin tapa on soittaa – vastaan arkisin klo 9–18. Jos en pääse
+        vastaamaan, soitan takaisin saman päivän aikana.</p>
+
+      <!-- TODO: vaihda oikea puhelinnumero (myös tel:-linkkiin) -->
+      <p><a class="puhelin-iso" href="tel:+358401234567">040&nbsp;123&nbsp;4567</a></p>
+
+      <p>Voit myös lähettää viestin WhatsAppilla tai sähköpostilla:
+        <a href="mailto:info@etdigiapu.fi">info@etdigiapu.fi</a></p>
+
+      <h2>Jätä soittopyyntö</h2>
+      <p>Jos soittaminen ei juuri nyt sovi, jätä numerosi alle, niin soitan
+        sinulle. Tämä sopii hyvin myös, jos tilaat apua vanhemmallesi.</p>
+
+      <!-- TODO: luo lomake osoitteessa formspree.io ja vaihda oikea
+           lomaketunnus action-osoitteeseen -->
+      <form action="https://formspree.io/f/LOMAKETUNNUS" method="POST">
+        <label for="nimi">Nimesi</label>
+        <input type="text" id="nimi" name="nimi" required autocomplete="name">
+
+        <label for="puhelin">Puhelinnumerosi</label>
+        <input type="tel" id="puhelin" name="puhelin" required autocomplete="tel">
+
+        <label for="viesti">Missä asiassa tarvitset apua? (vapaaehtoinen)</label>
+        <textarea id="viesti" name="viesti" rows="4"></textarea>
+
+        <button class="nappi" type="submit">Lähetä soittopyyntö</button>
+      </form>
+
+      <h2>Palvelualue</h2>
+      <p>[Kaupunki] ja lähialueet. Matkat sisältyvät hintaan palvelualueella –
+        kauempanakin asuvat voivat kysyä, sovitaan erikseen.</p>
+    </div>
+  </main>
+
+  <footer class="alatunniste">
+    <div class="sisalto">
+      <p><strong>ET Digiapu</strong> · Etunimi Sukunimi · Y-tunnus [0000000-0]</p>
+      <p>Palvelualue: [Kaupunki] ja lähialueet</p>
+      <p>Puhelin: <a href="tel:+358401234567">040 123 4567</a> ·
+        Sähköposti: <a href="mailto:info@etdigiapu.fi">info@etdigiapu.fi</a></p>
+    </div>
+  </footer>
+</body>
+</html>
