@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Päivitä domain (https://www.etdigiapu.fi/) oikeaksi ennen julkaisua -->
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url><loc>https://www.etdigiapu.fi/</loc><priority>1.0</priority></url>
+  <url><loc>https://www.etdigiapu.fi/palvelut.html</loc><priority>0.9</priority></url>
+  <url><loc>https://www.etdigiapu.fi/digiturva.html</loc><priority>0.9</priority></url>
+  <url><loc>https://www.etdigiapu.fi/hinnat.html</loc><priority>0.8</priority></url>
+  <url><loc>https://www.etdigiapu.fi/lahjakortti.html</loc><priority>0.7</priority></url>
+  <url><loc>https://www.etdigiapu.fi/vinkit.html</loc><priority>0.7</priority></url>
+  <url><loc>https://www.etdigiapu.fi/vinkit-huijausviesti.html</loc><priority>0.6</priority></url>
+  <url><loc>https://www.etdigiapu.fi/vinkit-puhelinhuijaus.html</loc><priority>0.6</priority></url>
+  <url><loc>https://www.etdigiapu.fi/vinkit-uusi-puhelin.html</loc><priority>0.6</priority></url>
+  <url><loc>https://www.etdigiapu.fi/minusta.html</loc><priority>0.6</priority></url>
+  <url><loc>https://www.etdigiapu.fi/yhteys.html</loc><priority>0.7</priority></url>
+  <url><loc>https://www.etdigiapu.fi/tietosuoja.html</loc><priority>0.3</priority></url>
+</urlset>

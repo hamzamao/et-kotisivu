@@ -1,68 +1,100 @@
 # ET Digiapu & Digiturva – kotisivut
 
-Staattinen kotisivusto digiapupalvelulle: kotikäyntejä senioreille (puhelin,
-netti, TV, turvallinen asiointi) sekä **Digiturva-jäsenyys** – huijausvahti, jossa
-asiakas lähettää kuvakaappauksen epäilyttävästä viestistä ja saa vastauksen.
-Moderni ulkoasu (Inter-fontti, gradienttihero, kortit), mutta luettavuus edellä:
-iso teksti, vahva kontrasti, suuret painikkeet. Ei build-vaihetta eikä
-riippuvuuksia – pelkkää HTML:ää ja CSS:ää.
+Staattinen kotisivusto digiapupalvelulle. Kaksi tuotetta: **kotikäynnit**
+senioreille (puhelin, netti, TV, turvallinen asiointi) ja **Digiturva-jäsenyys**
+(24,90 € / 39,90 €/kk) – huijausvahti, jossa asiakas lähettää kuvakaappauksen
+epäilyttävästä viestistä ja saa vastauksen (tekoäly esiseuloo, ihminen varmistaa).
+
+Tekniikka: pelkkää HTML:ää ja CSS:ää, kevyt vapaaehtoinen JavaScript. **Ei
+build-vaihetta eikä riippuvuuksia ajossa** – nopea myös vanhoilla laitteilla.
+Ei ulkoisia fontteja eikä seurantaa (tietosuojasyistä).
 
 ## Sivut
 
-| Tiedosto           | Sisältö                                                  |
-| ------------------ | -------------------------------------------------------- |
-| `index.html`       | Etusivu: kotikäynnit + Digiturva-nosto + näin se toimii   |
-| `palvelut.html`    | Kotikäyntipalvelut kiinteillä hinnoilla                   |
-| `digiturva.html`   | Huijausvahti + jäsenyystasot 24,90 € / 39,90 € + UKK      |
-| `hinnat.html`      | Hinnasto, jäsenyydet ja kotitalousvähennys                |
-| `lahjakortti.html` | Lahjakortit (kohderyhmänä aikuiset lapset)                |
-| `minusta.html`     | Esittely, kasvokuva, lupaukset asiakkaalle                |
-| `yhteys.html`      | Puhelin, soittopyyntölomake, palvelualue                  |
+| Tiedosto | Sisältö |
+| --- | --- |
+| `index.html` | Etusivu: kotikäynnit, Digiturva-nosto, näin se toimii, palautteet |
+| `palvelut.html` | Kotikäyntipalvelut kiinteillä hinnoilla |
+| `digiturva.html` | Huijausvahti + animoitu esimerkki + jäsenyystasot + UKK |
+| `hinnat.html` | Hinnasto, jäsenyydet ja kotitalousvähennys |
+| `vinkit.html` + `vinkit-*.html` | Vinkit-osio: 3 huijausvalistusartikkelia (Google-näkyvyys) |
+| `lahjakortti.html` | Lahjakortit (kohderyhmänä aikuiset lapset) |
+| `minusta.html` | Esittely ja lupaukset |
+| `yhteys.html` | Puhelin, soittopyyntölomake (suostumus), WhatsApp |
+| `tietosuoja.html` | GDPR-tietosuojaseloste (luonnospohja) |
 
-Ylä- ja alatunniste on kopioitu jokaiselle sivulle, koska sivustolla ei ole
-build-vaihetta. Jos muutat valikkoa tai alatunnistetta, muuta kaikkiin
-seitsemään tiedostoon.
+Aputiedostot: `css/style.css`, `js/main.js` (esiintuloanimaatiot + demo),
+`favicon.svg`, `og-kuva.svg`/`og-kuva.png` (jakokuva), `robots.txt`, `sitemap.xml`.
 
-## Tärkeää: miten "tekoälyhuijaustarkistus" oikeasti toimii
+## Sivujen tuottaminen (kehittäjälle)
 
-Tämä on **staattinen sivusto** (esim. GitHub Pages), joten se ei voi itse ajaa
-tekoälyä turvallisesti – API-avain paljastuisi kävijöille. Siksi sivusto kuvaa
-palvelun näin: **asiakas lähettää kuvakaappauksen WhatsAppilla → tekoäly
-analysoi → sinä varmistat tuloksen ihmisenä → vastaat.** Tämä toimii heti, kun
-sinä olet mukana silmukassa, ja se on myös myyntivaltti ("ihminen ratkaisee,
-ei botti").
+Ylä- ja alatunniste sekä `<head>` ovat samat joka sivulla. Jotta ne pysyvät
+yhtenäisinä, sivut **generoidaan** skriptillä – itse sivusto on silti tavallista
+staattista HTML:ää eikä tarvitse skriptiä toimiakseen.
 
-Kun haluat automatisoida analyysin, tarvitaan pieni taustapalvelin (esim. yksi
-serverless-funktio Cloudflare Workersissa tai Vercelissä), joka kutsuu
-kuva-analyysin tekevää tekoälymallia. Avain pidetään palvelimella, ei sivulla.
-Tämä on luonteva seuraava vaihe – ei tarpeen julkaisua varten.
+```sh
+python3 tools/build.py      # kirjoittaa kaikki *.html-tiedostot uudelleen
+```
 
-## Ennen julkaisua: täytä paikkamerkit
+Muokkaa sisältöä ja paikkamerkkejä tiedostossa `tools/build.py` (ei käsin
+yksittäisiä HTML-tiedostoja), aja skripti ja committaa tulos.
 
-Etsi ja korvaa kaikista `.html`-tiedostoista:
+## Ennen julkaisua: täytä paikkamerkit (tiedostossa `tools/build.py`)
 
-- [ ] **`Etunimi Sukunimi`** → oma nimesi
-- [ ] **`[Kaupunki]`** → palvelualueesi
-- [ ] **`[0000000-0]`** → oikea Y-tunnus
-- [ ] **`040 123 4567`** / **`+358401234567`** / **`358401234567`** → oikea numero
-      (näkyvä teksti, `tel:`-linkit, WhatsApp-linkit `wa.me`, JSON-LD)
-- [ ] **`info@etdigiapu.fi`** ja **`https://www.etdigiapu.fi/`** → oikea sähköposti ja domain
-- [ ] **Hinnat** – tarkista kertahinnat (79–149 €) ja jäsenmaksut (24,90 / 39,90 €)
-- [ ] **`img/kasvokuva.svg`** → oikea kasvokuva (`minusta.html`)
-- [ ] **Soittopyyntölomake** (`yhteys.html`) – luo lomake [formspree.io](https://formspree.io)-palvelussa ja korvaa `LOMAKETUNNUS`
-- [ ] **Kotitalousvähennys** (`hinnat.html`) – varmista summat ja prosentti [vero.fi](https://www.vero.fi)
-- [ ] **Digiturva-numero** – päätä, onko se sama puhelinnumero vai erillinen WhatsApp
+- [ ] `NIMI` → oma nimesi
+- [ ] `ALUE` → palvelualue ([Kaupunki] ja lähialueet, myös `minusta`-tekstissä)
+- [ ] `YTUNNUS` → oikea Y-tunnus
+- [ ] `PUH_NUM` / `PUH_NAYTTO` / `WA_NUM` → oikea puhelinnumero
+- [ ] `EMAIL`, `DOMAIN` → oikea sähköposti ja verkkotunnus (myös `robots.txt`, `sitemap.xml`)
+- [ ] Hinnat (kerta 79–149 €, jäsenyydet 24,90 / 39,90 €) – tarkista
+- [ ] Soittopyyntölomake (`build_yhteys`): luo lomake **EU-alueen** palveluun ja
+      korvaa `formspree.io/f/LOMAKETUNNUS` (ks. tietosuoja alla)
+- [ ] Asiakaspalautteet (`build_index`): korvaa esimerkit oikeilla, **asiakkaan
+      luvalla** julkaistavilla palautteilla
+- [ ] Tietosuojaseloste (`tietosuoja.html`): täytä rekisterinpitäjä ja käsittelijät
+- [ ] Kotitalousvähennys: tarkista voimassa olevat luvut **vero.fi**
+
+## Tietosuoja (EU / GDPR)
+
+Sivusto on rakennettu tietosuoja edellä, koska se kerää henkilötietoja
+(yhteydenotot) ja Digiturvassa käsitellään asiakkaiden kuvakaappauksia:
+
+- **Ei ulkoisia fontteja** – Google Fonts -CDN poistettu (se siirtäisi kävijän
+  IP-osoitteen Googlelle). Käytössä järjestelmäfontit. *Halutessa* voit
+  self-hostata Inter-fontin: lataa `woff2`-tiedostot kansioon `fonts/`, lisää
+  `@font-face` tiedostoon `css/style.css` ja liitä OFL-lisenssi mukaan.
+- **Suostumus** lomakkeessa: pakollinen valintaruutu + linkki tietosuojaselosteeseen.
+- **Tietojen minimointi**: lomake kerää vain nimen ja puhelinnumeron.
+- **Lomakepalvelu**: oletuksena Formspree (US) on vain paikkamerkki. Suosi
+  EU-/ETA-alueella toimivaa lomake- ja laskutuspalvelua, tai kuvaa siirto
+  selosteessa.
+- **Kuvakaappaukset**: käsitellään luottamuksellisesti, vain arviointia varten,
+  poistetaan käsittelyn jälkeen; pankkitunnuksia ei koskaan pyydetä.
+
+## Tiekartta: oikea "turva-tekoäly" ja maksut (ei vielä toteutettu)
+
+Staattinen sivu ei voi ajaa tekoälyä turvallisesti (API-avain paljastuisi). Nyt
+huijaustarkistus toimii ihmisvetoisesti WhatsAppin kautta. Automatisointi vaatii
+pienen taustapalvelun:
+
+- **Serverless-funktio** (esim. Cloudflare Workers / Vercel, mieluiten EU-alue),
+  joka kutsuu kuva-analyysiin kykenevää mallia; avain pysyy palvelimella.
+- **Maksut**: Stripe tai kotimainen vaihtoehto jäsenmaksuihin (toistuvaislaskutus).
+- **GDPR-by-design**: EU-sijainti, käsittelysopimus (DPA) tekoälypalvelun kanssa,
+  tietojen minimointi, kuvien automaattinen poisto, käsittelytoimien seloste (ROPA),
+  ei koskaan tunnusten tallennusta.
 
 ## Julkaisu GitHub Pagesissa
 
-1. **Settings → Pages → Source: Deploy from a branch**, valitse haara ja `/ (root)`.
-2. Sivusto ilmestyy osoitteeseen `https://<käyttäjä>.github.io/et-kotisivu/`.
-3. Oma domain: osta tunnus, lisää se Pagesin asetuksiin ja tee nimipalveluun
-   ohjeiden mukaiset tietueet.
+1. **Settings → Pages → Build and deployment → Source: Deploy from a branch**,
+   valitse haara `claude/stoic-curie-npiqk8` ja kansio `/ (root)` → **Save**.
+2. Sivusto: `https://hamzamao.github.io/et-kotisivu/` (n. minuutin kuluttua).
+3. Oma verkkotunnus: lisää Pagesin asetuksiin ja tee nimipalvelutietueet.
+
+`.nojekyll` on mukana, joten GitHub tarjoaa tiedostot sellaisenaan.
 
 ## Paikallinen esikatselu
 
 ```sh
-python3 -m http.server 8000
+python3 -m http.server 8000     # avaa http://localhost:8000
 ```
-ja avaa <http://localhost:8000>.

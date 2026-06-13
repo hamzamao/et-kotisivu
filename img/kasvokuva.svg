@@ -1,6 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="280" height="280" viewBox="0 0 280 280" role="img" aria-label="Kasvokuvan paikka">
-  <rect width="280" height="280" rx="12" fill="#ddd5c8"/>
-  <circle cx="140" cy="110" r="48" fill="#9b8f7d"/>
-  <path d="M60 240c0-44 36-72 80-72s80 28 80 72v40H60z" fill="#9b8f7d"/>
-  <text x="140" y="262" text-anchor="middle" font-family="sans-serif" font-size="18" fill="#26211c">Kuva tulossa</text>
-</svg>
