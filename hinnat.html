@@ -4,101 +4,132 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Hinnat ja kotitalousvähennys – ET Digiapu</title>
-  <meta name="description" content="Selkeät kiinteät hinnat digiavulle kotiin. Työ oikeuttaa kotitalousvähennykseen – saat kuitin, jossa työn osuus on eritelty valmiiksi verottajaa varten.">
+  <meta name="description" content="Selkeät kiinteät hinnat digiavulle kotiin sekä Digiturva-jäsenyys alkaen 24,90 €/kk. Työ oikeuttaa kotitalousvähennykseen – saat kuitin, jossa työn osuus on eritelty.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
   <header class="ylatunniste">
     <div class="sisalto">
-      <a class="logo" href="index.html">ET Digiapu</a>
+      <a class="logo" href="index.html">ET<span>.</span> Digiapu</a>
       <nav class="navigaatio" aria-label="Päävalikko">
         <ul>
           <li><a href="index.html">Etusivu</a></li>
           <li><a href="palvelut.html">Palvelut</a></li>
+          <li><a href="digiturva.html">Digiturva</a></li>
           <li><a href="hinnat.html" aria-current="page">Hinnat</a></li>
-          <li><a href="minusta.html">Minusta</a></li>
           <li><a href="lahjakortti.html">Lahjakortti</a></li>
+          <li><a href="minusta.html">Minusta</a></li>
           <li><a href="yhteys.html">Yhteystiedot</a></li>
         </ul>
       </nav>
     </div>
   </header>
 
-  <main>
+  <section class="sivuotsikko">
     <div class="sisalto">
+      <span class="kulmake">Selkeät hinnat</span>
       <h1>Hinnat</h1>
-      <p>Hinnat ovat kiinteitä ja sisältävät matkat palvelualueella
-        (<strong>[Kaupunki] ja lähialueet</strong>). Maksu käynnin päätteeksi
-        kortilla, MobilePaylla tai laskulla – niin kuin sinulle sopii.</p>
-
-      <table>
-        <caption class="nakymaton">Palveluiden hinnasto</caption>
-        <thead>
-          <tr>
-            <th scope="col">Palvelu</th>
-            <th scope="col">Hinta</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>Puhelimen vaihto ja tietojen siirto</td>
-            <td>89 €</td>
-          </tr>
-          <tr>
-            <td>Kuituliittymä ja reititin käyttökuntoon</td>
-            <td>89 €</td>
-          </tr>
-          <tr>
-            <td>TV-boksi tai älytelevisio asennettuna</td>
-            <td>89 €</td>
-          </tr>
-          <tr>
-            <td>Tulostin, sähköposti ja salasanat kuntoon</td>
-            <td>79 €</td>
-          </tr>
-          <tr>
-            <td>Turvakäynti – suojaudu huijauksilta</td>
-            <td>99 €</td>
-          </tr>
-          <tr>
-            <td>Muu apu tuntityönä</td>
-            <td>79 € / tunti</td>
-          </tr>
-          <tr>
-            <td>Jatkoaika samalla käynnillä</td>
-            <td>15 € / alkava 15 min</td>
-          </tr>
-        </tbody>
-      </table>
-
-      <h2>Kotitalousvähennys – saat osan rahoista takaisin</h2>
-      <p>Kotona tehty tietotekniikan asennus- ja opastustyö on
-        <strong>kotitalousvähennykseen oikeuttavaa työtä</strong>. Vuonna 2026
-        vähennyksen enimmäismäärä on 2&nbsp;250 € henkilöä kohden ja omavastuu
-        100 € vuodessa (tarkista ajantasaiset tiedot osoitteesta
-        <a href="https://www.vero.fi/henkiloasiakkaat/verokortti-ja-veroilmoitus/tulot-ja-vahennykset/kotitalousvahennys/">vero.fi</a>).</p>
-      <p>Vähennys lasketaan työn osuudesta, ja se hyödyttää eniten silloin, kun
-        käyntejä on vuoden aikana useampia tai työ on isompi. Siksi saat
-        minulta aina kuitin, jossa <strong>työn osuus on eritelty
-        valmiiksi</strong> – ja jos haluat, autan vähennyksen ilmoittamisessa
-        OmaVerossa vaikka saman käynnin aikana.</p>
-
-      <div class="huomio">
-        <p><strong>Ei piilokuluja:</strong> kerron aina hinnan ennen työn
-          aloittamista. Jos en pysty auttamaan pulmassasi, käynti ei maksa
-          mitään.</p>
-      </div>
-
-      <p><a class="nappi" href="yhteys.html">Soita ja sovi käynti</a></p>
+      <p>Kiinteät hinnat sisältävät matkat palvelualueella. Maksu käynnin
+        päätteeksi kortilla, MobilePaylla tai laskulla – niin kuin sinulle sopii.</p>
     </div>
+  </section>
+
+  <main>
+    <section class="osio">
+      <div class="sisalto">
+        <h2>Kotikäynnit</h2>
+        <table>
+          <caption class="nakymaton">Palveluiden hinnasto</caption>
+          <thead>
+            <tr><th scope="col">Palvelu</th><th scope="col">Hinta</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Puhelimen vaihto ja tietojen siirto</td><td>89 €</td></tr>
+            <tr><td>Kuituliittymä ja reititin käyttökuntoon</td><td>89 €</td></tr>
+            <tr><td>TV-boksi tai älytelevisio asennettuna</td><td>89 €</td></tr>
+            <tr><td>Tulostin, sähköposti ja salasanat kuntoon</td><td>79 €</td></tr>
+            <tr><td>Turvakäynti – suojaudu huijauksilta</td><td>99 €</td></tr>
+            <tr><td>Muu apu tuntityönä</td><td>79 € / tunti</td></tr>
+            <tr><td>Jatkoaika samalla käynnillä</td><td>15 € / alkava 15 min</td></tr>
+          </tbody>
+        </table>
+
+        <h2>Digiturva-jäsenyys</h2>
+        <p>Jatkuva suoja huijauksia vastaan ja oma tuki kuukausihintaan, ilman
+          sitoutumisaikaa. <a href="digiturva.html">Lue tarkemmin Digiturvasta.</a></p>
+        <table>
+          <caption class="nakymaton">Digiturva-jäsenyyden hinnasto</caption>
+          <thead>
+            <tr><th scope="col">Jäsenyys</th><th scope="col">Hinta</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Digiturva Perus – huijausvahti ja puhelintuki</td><td>24,90 € / kk</td></tr>
+            <tr><td>Digiturva Plus – sis. kotikäynnin ja etätuen</td><td>39,90 € / kk</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="osio">
+      <div class="sisalto">
+        <div class="osio-otsikko">
+          <span class="ylarivi">Veroetu</span>
+          <h2>Kotitalousvähennys – saat osan rahoista takaisin</h2>
+        </div>
+        <p>Kotona tehty tietotekniikan asennus- ja opastustyö on
+          <strong>kotitalousvähennykseen oikeuttavaa työtä</strong>. Vuonna 2026
+          vähennyksen enimmäismäärä on 2&nbsp;250 € henkilöä kohden ja omavastuu
+          100 € vuodessa (tarkista ajantasaiset tiedot ja vähennysprosentti
+          osoitteesta
+          <a href="https://www.vero.fi/henkiloasiakkaat/verokortti-ja-veroilmoitus/tulot-ja-vahennykset/kotitalousvahennys/">vero.fi</a>).</p>
+        <p>Vähennys lasketaan työn osuudesta, ja se hyödyttää eniten silloin, kun
+          käyntejä on vuoden aikana useampia tai työ on isompi. Siksi saat
+          minulta aina kuitin, jossa <strong>työn osuus on eritelty
+          valmiiksi</strong> – ja jos haluat, autan vähennyksen ilmoittamisessa
+          OmaVerossa vaikka saman käynnin aikana.</p>
+
+        <div class="huomio">
+          <p><strong>Ei piilokuluja:</strong> kerron aina hinnan ennen työn
+            aloittamista. Jos en pysty auttamaan pulmassasi, käynti ei maksa
+            mitään.</p>
+        </div>
+
+        <p><a class="nappi" href="yhteys.html">Soita ja sovi käynti</a></p>
+      </div>
+    </section>
   </main>
 
   <footer class="alatunniste">
     <div class="sisalto">
-      <p><strong>ET Digiapu</strong> · Etunimi Sukunimi · Y-tunnus [0000000-0]</p>
-      <p>Palvelualue: [Kaupunki] ja lähialueet</p>
-      <p>Puhelin: <a href="tel:+358401234567">040 123 4567</a> ·
-        Sähköposti: <a href="mailto:info@etdigiapu.fi">info@etdigiapu.fi</a></p>
+      <div class="sarakkeet">
+        <div>
+          <h3>ET Digiapu &amp; Digiturva</h3>
+          <p>Digiapua kotiin ja suojaa huijauksia vastaan – ihmiseltä, jota et
+            joudu jonottamaan.</p>
+          <p>Etunimi Sukunimi · Y-tunnus [0000000-0]</p>
+        </div>
+        <div>
+          <h3>Yhteystiedot</h3>
+          <p>Puhelin: <a href="tel:+358401234567">040 123 4567</a></p>
+          <p>WhatsApp: <a href="https://wa.me/358401234567">040 123 4567</a></p>
+          <p>Sähköposti: <a href="mailto:info@etdigiapu.fi">info@etdigiapu.fi</a></p>
+          <p>Palvelualue: [Kaupunki] ja lähialueet</p>
+        </div>
+        <div>
+          <h3>Sivut</h3>
+          <ul>
+            <li><a href="palvelut.html">Palvelut</a></li>
+            <li><a href="digiturva.html">Digiturva-jäsenyys</a></li>
+            <li><a href="hinnat.html">Hinnat ja kotitalousvähennys</a></li>
+            <li><a href="lahjakortti.html">Lahjakortti</a></li>
+          </ul>
+        </div>
+      </div>
+      <p class="pohja">En koskaan kysy tai käsittele pankkitunnuksiasi tai
+        korttisi tietoja – missään tilanteessa.</p>
     </div>
   </footer>
 </body>
