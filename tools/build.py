@@ -265,7 +265,7 @@ def build_index():
               ) % (PUH_NUM, EMAIL, ALUE, DOMAIN)
     write("index.html", page("index.html",
         "eTuki – digiapua kotiin ja suoja huijauksia vastaan",
-        "Digiapua kotiisi: puhelin, netti ja TV kuntoon kiinteällä hinnalla. Digiturva-jäsenyys suojaa huijauksilta – lähetä kuvakaappaus epäilyttävästä viestistä ja saat vastauksen minuuteissa.",
+        "Digiapua kotiisi: puhelin, netti ja TV kuntoon kiinteällä hinnalla. Digiturva-jäsenyys suojaa huijauksilta – tarkistuta epäilyttävät viestit.",
         body, extra_jsonld=jsonld))
 
 
@@ -288,7 +288,9 @@ def build_palvelut():
     body = (
         sivuotsikko("Kotikäynnit", "Palvelut",
                     "Kaikki tehdään kotonasi, kiireettä ja selkokielellä. Hinnat ovat kiinteitä, joten tiedät kustannuksen etukäteen – ei yllätyksiä.")
-        + '<section class="osio"><div class="sisalto reveal"><ul class="korttilista">'
+        + '<section class="osio"><div class="sisalto reveal">'
+        '<div class="osio-otsikko"><span class="ylarivi">Kotikäynnit</span>'
+        '<h2>Mitä teemme kotonasi</h2></div><ul class="korttilista">'
         + kortit + '</ul>'
         + '<div class="huomio turva"><p><strong>Turvalupauksemme:</strong> emme koskaan kysy '
           'emmekä käsittele pankkitunnuksiasi tai maksukorttisi tietoja. Kaikki asiointi tehdään niin, '
@@ -302,7 +304,7 @@ def build_palvelut():
     )
     write("palvelut.html", page("palvelut.html",
         "Palvelut – eTuki | Digiapua kotiin",
-        "Puhelimen vaihto ja tietojen siirto, reitittimen asennus, TV-boksin asennus, tulostin ja sähköposti kuntoon sekä turvakäynti huijauksia vastaan. Kiinteät hinnat, kotitalousvähennys.",
+        "Puhelimen vaihto, reitittimen ja TV-boksin asennus, tulostin ja sähköposti kuntoon sekä turvakäynti huijauksia vastaan. Kiinteät hinnat, kotitalousvähennys.",
         body))
 
 
@@ -406,7 +408,7 @@ def build_digiturva():
               '{"@type":"Offer","name":"Digiturva Plus","price":"39.90","priceCurrency":"EUR"}]}</script>')
     write("digiturva.html", page("digiturva.html",
         "Digiturva – huijausvahti ja jäsenyys senioreille | eTuki",
-        "eTuki Digiturva on jatkuva suoja huijauksia vastaan: lähetä kuvakaappaus epäilyttävästä viestistä, tekoäly analysoi sen ja ihminen varmistaa. Jäsenyys alkaen 24,90 €/kk, ei sitoutumisaikaa.",
+        "Digiturva on jatkuva suoja huijauksia vastaan: lähetä kuva epäilyttävästä viestistä, tekoäly analysoi ja ihminen varmistaa. Jäsenyys alk. 24,90 €/kk.",
         body, extra_jsonld=jsonld))
 
 
@@ -470,6 +472,7 @@ def build_lahjakortti():
           '<p>Toistuvatko samat puhelut: <em>"taas tämä puhelin tekee jotain outoa"</em> – etkä '
           'pysty auttamaan etänä? Tulemme paikan päälle, laitamme laitteet kuntoon ja opastamme käytön '
           'rauhassa ja selkokielellä. Sinä saat mielenrauhan, ja vanhempasi tutun auttajan jatkoa varten.</p>'
+          '<h2>Valitse lahjakortti</h2>'
           '<div class="paketit">'
           '<div class="paketti"><h3>Lahjakortti – kotikäynti</h3>'
           '<p class="kk-hinta">89 € <small>yksi käynti</small></p><ul>'
@@ -620,6 +623,8 @@ def build_vinkit():
         sivuotsikko("Vinkit", "Vinkit ja artikkelit",
                     "Selkokielisiä ohjeita huijauksilta suojautumiseen ja arjen digiasioihin. Vapaasti luettavissa.")
         + '<section class="osio"><div class="sisalto reveal">'
+          '<div class="osio-otsikko"><span class="ylarivi">Lue ja opi</span>'
+          '<h2>Artikkelit</h2></div>'
           '<ul class="artikkelilista">' + lista + '</ul>'
           '<div class="huomio"><p>Tarvitsetko apua juuri nyt? <a href="yhteys.html">Soita</a> tai '
           'tutustu <a href="digiturva.html">Digiturva-jäsenyyteen</a>, joka tarkistaa epäilyttävät '
