@@ -11,14 +11,15 @@ import urllib.parse
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 # --- Paikkamerkit (vaihda oikeiksi ennen julkaisua) ---
-DOMAIN = "https://www.etdigiapu.fi"
+DOMAIN = "https://www.etuki.fi"
+BRAND = "eTuki"
 PUH_NUM = "+358401234567"
 PUH_NAYTTO = "040&nbsp;123&nbsp;4567"
 PUH_NAYTTO_TAVALLINEN = "040 123 4567"
 WA_NUM = "358401234567"
 WA_VIESTI = "Hei, haluaisin tarkistuttaa epäilyttävän viestin."
 WA_URL = "https://wa.me/%s?text=%s" % (WA_NUM, urllib.parse.quote(WA_VIESTI))
-EMAIL = "info@etdigiapu.fi"
+EMAIL = "info@etuki.fi"
 YTUNNUS = "[0000000-0]"
 NIMI = "Etunimi Sukunimi"
 ALUE = "[Kaupunki] ja lähialueet"
@@ -45,6 +46,8 @@ I = {
     "varoitus": _svg('<path d="M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/>'),
     "kuva": _svg('<rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/>'),
     "wa": _svg('<path d="M21 11.5a8.4 8.4 0 0 1-12.3 7.4L3 21l2.2-5.6A8.4 8.4 0 1 1 21 11.5z"/>'),
+    "henkilo": _svg('<circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-6 8-6s8 2 8 6"/>'),
+    "merkki": _svg('<path d="M12 2 4 5v6c0 5 3.5 8.5 8 11 4.5-2.5 8-6 8-11V5l-8-3z"/><polyline points="9 12 11 14 15 10"/>'),
 }
 
 LOGO_SVG = ('<svg viewBox="0 0 64 64" aria-hidden="true">'
@@ -83,7 +86,7 @@ def header(active):
     return (
         '<a class="ohita" href="#sisalto">Siirry sisältöön</a>'
         '<header class="ylatunniste"><div class="sisalto">'
-        '<a class="logo" href="index.html">%s ET<span style="color:#ea580c">.</span> Digiapu</a>'
+        '<a class="logo" href="index.html">%s e<span style="color:#ea580c">T</span>uki</a>'
         '<nav class="navigaatio" aria-label="Päävalikko"><ul>%s</ul></nav>'
         '</div></header>' % (LOGO_SVG, items)
     )
@@ -92,8 +95,8 @@ def header(active):
 FOOTER = (
     '<footer class="alatunniste"><div class="sisalto">'
     '<div class="sarakkeet">'
-    '<div><h3>ET Digiapu &amp; Digiturva</h3>'
-    '<p>Digiapua kotiin ja suojaa huijauksia vastaan – ihmiseltä, jota et joudu jonottamaan.</p>'
+    '<div><h3>eTuki</h3>'
+    '<p>Digiapua kotiin ja suojaa huijauksia vastaan – ihmisiltä, joita et joudu jonottamaan.</p>'
     '<p>%s · Y-tunnus %s</p></div>'
     '<div><h3>Yhteystiedot</h3>'
     '<p>Puhelin: <a href="tel:%s">%s</a></p>'
@@ -106,10 +109,10 @@ FOOTER = (
     '<li><a href="hinnat.html">Hinnat ja kotitalousvähennys</a></li>'
     '<li><a href="vinkit.html">Vinkit ja artikkelit</a></li>'
     '<li><a href="lahjakortti.html">Lahjakortti</a></li>'
-    '<li><a href="minusta.html">Minusta</a></li>'
+    '<li><a href="meista.html">Meistä</a></li>'
     '<li><a href="tietosuoja.html">Tietosuojaseloste</a></li>'
     '</ul></div></div>'
-    '<p class="pohja">En koskaan kysy tai käsittele pankkitunnuksiasi tai korttisi tietoja – missään tilanteessa.</p>'
+    '<p class="pohja">Emme koskaan kysy emmekä käsittele pankkitunnuksiasi tai korttisi tietoja – missään tilanteessa.</p>'
     '</div></footer>'
 ) % (NIMI, YTUNNUS, PUH_NUM, PUH_NAYTTO_TAVALLINEN, WA_URL, PUH_NAYTTO_TAVALLINEN, EMAIL, EMAIL, ALUE)
 
@@ -131,7 +134,7 @@ def page(slug, title, desc, body, active=None, extra_jsonld="", scripts=True):
         '<link rel="icon" href="favicon.svg" type="image/svg+xml">'
         '<meta property="og:type" content="website">'
         '<meta property="og:locale" content="fi_FI">'
-        '<meta property="og:site_name" content="ET Digiapu &amp; Digiturva">'
+        '<meta property="og:site_name" content="eTuki">'
         '<meta property="og:title" content="%s">'
         '<meta property="og:description" content="%s">'
         '<meta property="og:image" content="%s">'
@@ -163,14 +166,14 @@ def hero():
         '<section class="hero"><div class="sisalto">'
         '<div><span class="kulmake">Digiapua ja digiturvaa · %s</span>'
         '<h1>Laitteet kuntoon kotonasi – ja suoja huijauksia vastaan</h1>'
-        '<p class="alaotsikko">Autan puhelimen, netin ja television kanssa kiireettä ja '
+        '<p class="alaotsikko">Autamme puhelimen, netin ja television kanssa kiireettä ja '
         'selkokielellä. Digiturva-jäsenenä saat lisäksi oman huijausvahdin: lähetä kuva '
         'epäilyttävästä viestistä, ja saat vastauksen minuuteissa.</p>'
         '<div class="hero-cta">'
         '<a class="nappi" href="tel:%s">%s Soita %s</a>'
         '<a class="nappi laidalla" href="digiturva.html">Tutustu Digiturvaan</a></div>'
         '<ul class="merkit"><li>✓ Kiinteät hinnat</li><li>✓ Kotitalousvähennys</li>'
-        '<li>✓ Sama tuttu auttaja</li><li>✓ Ei jonoja, ei botteja</li></ul></div>'
+        '<li>✓ Oma nimetty auttaja</li><li>✓ Ei jonoja, ei botteja</li></ul></div>'
         '<div class="hero-kuva">%s</div>'
         '</div></section>'
     ) % (ALUE, PUH_NUM, I["puhelin"], PUH_NAYTTO_TAVALLINEN, HERO_SVG)
@@ -191,13 +194,13 @@ def sivuotsikko(kulmake, otsikko, teksti):
 # --- index ---
 def build_index():
     kortit = (kortti("posti", "Uusi puhelin käyttökuntoon",
-                     "Siirrän kuvat, yhteystiedot ja WhatsApp-viestit vanhasta puhelimesta uuteen – mitään ei katoa.", "89 €")
+                     "Siirrämme kuvat, yhteystiedot ja WhatsApp-viestit vanhasta puhelimesta uuteen – mitään ei katoa.", "89 €")
               + kortti("wifi", "Netti ja reititin kuntoon",
-                       "Kytken kuituliittymän ja reitittimen ja varmistan, että netti toimii joka huoneessa.", "89 €")
+                       "Kytkemme kuituliittymän ja reitittimen ja varmistamme, että netti toimii joka huoneessa.", "89 €")
               + kortti("tv", "TV-boksi ja älytelevisio",
-                       "Asennan TV-boksin tai uuden television ja opastan kaukosäätimen ja suoratoistopalvelut.", "89 €")
+                       "Asennamme TV-boksin tai uuden television ja opastamme kaukosäätimen ja suoratoistopalvelut.", "89 €")
               + kortti("kilpi", "Turvakäynti",
-                       "Laitan tietoturvan kuntoon ja opastan, miten huijaukset tunnistaa. <strong>En koskaan kysy pankkitunnuksiasi.</strong>", "99 €"))
+                       "Laitamme tietoturvan kuntoon ja opastamme, miten huijaukset tunnistaa. <strong>Emme koskaan kysy pankkitunnuksiasi.</strong>", "99 €"))
     palautteet = (
         '<section class="osio"><div class="sisalto reveal">'
         '<div class="osio-otsikko"><span class="ylarivi">Asiakkaiden ääni</span>'
@@ -220,16 +223,16 @@ def build_index():
         hero()
         + '<section class="osio"><div class="sisalto reveal">'
           '<div class="osio-otsikko"><span class="ylarivi">Kotikäynnit</span>'
-          '<h2>Missä voin auttaa?</h2><p class="haalea">Tulen kotiisi, laitan laitteet '
-          'kuntoon ja opastan käytön niin monta kertaa kuin tarvitaan.</p></div>'
+          '<h2>Missä autamme?</h2><p class="haalea">Tulemme kotiisi, laitamme laitteet '
+          'kuntoon ja opastamme käytön niin monta kertaa kuin tarvitaan.</p></div>'
           '<ul class="korttilista">' + kortit + '</ul>'
           '<p><a class="nappi toissijainen" href="palvelut.html">Kaikki palvelut ja hinnat</a></p>'
           '</div></section>'
         + '<section><div class="sisalto"><div class="kaista reveal">'
-          '<span class="kulmake">Uutta · ET Digiturva</span>'
+          '<span class="kulmake">Uutta · eTuki Digiturva</span>'
           '<h2>Epäilyttävä viesti? Älä arvaa – tarkistuta se.</h2>'
           '<p>Digiturva-jäsenenä lähetät kuvakaappauksen epäilyttävästä viestistä WhatsAppilla. '
-          'Tekoäly analysoi sen heti, minä varmistan tuloksen, ja saat selkeän vastauksen: '
+          'Tekoäly analysoi sen heti, asiantuntijamme varmistaa tuloksen, ja saat selkeän vastauksen: '
           '<strong>huijaus vai ei – ja mitä tehdä seuraavaksi.</strong></p>'
           '<p>Jäsenyys alkaen 24,90 €/kk, ei sitoutumisaikaa.</p>'
           '<a class="nappi" href="digiturva.html">Lue lisää Digiturvasta</a></div></div></section>'
@@ -237,31 +240,31 @@ def build_index():
           '<div class="osio-otsikko"><span class="ylarivi">Helppoa alusta loppuun</span>'
           '<h2>Näin se toimii</h2></div><ol class="vaiheet">'
           '<li><h3>Soita tai jätä soittopyyntö</h3><p>Kerro omin sanoin, mikä laite kiusaa. '
-          'Ei tarvitse osata termejä – sitä varten minä olen.</p></li>'
-          '<li><h3>Tulen kotiisi sovittuna aikana</h3><p>Laitan laitteet kuntoon ja opastan '
-          'käytön rauhassa. Kerron hinnan aina etukäteen.</p></li>'
+          'Ei tarvitse osata termejä – sitä varten me olemme.</p></li>'
+          '<li><h3>Tulemme kotiisi sovittuna aikana</h3><p>Laitamme laitteet kuntoon ja opastamme '
+          'käytön rauhassa. Kerromme hinnan aina etukäteen.</p></li>'
           '<li><h3>Apu ei lopu käyntiin</h3><p>Jos jokin unohtuu, voit soittaa. '
           'Digiturva-jäsenenä saat tuen ja huijausvahdin jatkuvasti.</p></li></ol></div></section>'
         + palautteet
         + '<section class="osio"><div class="sisalto reveal">'
-          '<div class="osio-otsikko"><span class="ylarivi">Miksi minä?</span>'
-          '<h2>Ihminen, joka oikeasti välittää</h2></div>'
+          '<div class="osio-otsikko"><span class="ylarivi">Miksi me?</span>'
+          '<h2>Ihmiset, jotka oikeasti välittävät</h2></div>'
           '<p>Moni ikäihminen jää laitteidensa kanssa yksin – omilla lapsilla ei aina ole aikaa '
-          'tai kärsivällisyyttä. Minulla on. Kuuden vuoden asiakastyökokemus on opettanut '
-          'selittämään asiat ilman tietokonekieltä, ja autan sinua samalla tavalla kuin auttaisin '
-          'omia vanhempiani. <a href="minusta.html">Lue lisää minusta.</a></p>'
+          'tai kärsivällisyyttä. Meillä on. Kohtelemme jokaista asiakasta kuin omaa '
+          'vanhempaamme, ja selitämme asiat ilman tietokonekieltä – niin monta kertaa kuin '
+          'tarvitaan. <a href="meista.html">Lue lisää meistä.</a></p>'
           '<div class="huomio"><p><strong>Tiesitkö?</strong> Kotona tehty tietotekniikan asennus- '
           'ja opastustyö oikeuttaa <a href="hinnat.html">kotitalousvähennykseen</a>. Saat aina '
           'kuitin, jossa työn osuus on eritelty valmiiksi verottajaa varten.</p></div>'
           '</div></section>'
     )
     jsonld = ('<script type="application/ld+json">{"@context":"https://schema.org",'
-              '"@type":"LocalBusiness","name":"ET Digiapu & Digiturva",'
+              '"@type":"LocalBusiness","name":"eTuki",'
               '"description":"Digiapua kotiin senioreille sekä Digiturva-jäsenyys: huijaustarkistus, etätuki ja turvallinen asiointi.",'
               '"telephone":"%s","email":"%s","areaServed":"%s","priceRange":"€€","url":"%s/"}</script>'
               ) % (PUH_NUM, EMAIL, ALUE, DOMAIN)
     write("index.html", page("index.html",
-        "ET Digiapu & Digiturva – digiapua kotiin ja suoja huijauksia vastaan",
+        "eTuki – digiapua kotiin ja suoja huijauksia vastaan",
         "Digiapua kotiisi: puhelin, netti ja TV kuntoon kiinteällä hinnalla. Digiturva-jäsenyys suojaa huijauksilta – lähetä kuvakaappaus epäilyttävästä viestistä ja saat vastauksen minuuteissa.",
         body, extra_jsonld=jsonld))
 
@@ -270,15 +273,15 @@ def build_index():
 def build_palvelut():
     kortit = (
         kortti("posti", "Puhelimen vaihto ja tietojen siirto",
-               "Otan uuden puhelimen käyttöön ja siirrän kuvat, yhteystiedot ja WhatsApp-viestit vanhasta. Opastan tärkeimmät toiminnot ja kirjoitan tunnukset talteen sinulle.", "89 €")
+               "Otamme uuden puhelimen käyttöön ja siirrämme kuvat, yhteystiedot ja WhatsApp-viestit vanhasta. Opastamme tärkeimmät toiminnot ja kirjoitamme tunnukset talteen sinulle.", "89 €")
         + kortti("wifi", "Kuituliittymä ja reititin käyttökuntoon",
-                 "Kytken reitittimen, yhdistän laitteesi verkkoon ja varmistan, että netti kuuluu koko kotiin. Vaihdan myös turvalliset salasanat.", "89 €")
+                 "Kytkemme reitittimen, yhdistämme laitteesi verkkoon ja varmistamme, että netti kuuluu koko kotiin. Vaihdamme myös turvalliset salasanat.", "89 €")
         + kortti("tv", "TV-boksi tai älytelevisio asennettuna",
-                 "Asennan TV-boksin tai uuden television, viritän kanavat ja otan halutessasi käyttöön suoratoistopalvelut (esim. Yle Areena). Opastan kaukosäätimen rauhassa.", "89 €")
+                 "Asennamme TV-boksin tai uuden television, viritämme kanavat ja otamme halutessasi käyttöön suoratoistopalvelut (esim. Yle Areena). Opastamme kaukosäätimen rauhassa.", "89 €")
         + kortti("tulostin", "Tulostin, sähköposti ja salasanat kuntoon",
-                 "Asennan tulostimen, laitan sähköpostin toimimaan kaikilla laitteillasi ja kokoan salasanat turvalliseen järjestykseen.", "79 €")
+                 "Asennamme tulostimen, laitamme sähköpostin toimimaan kaikilla laitteillasi ja kokoamme salasanat turvalliseen järjestykseen.", "79 €")
         + kortti("kilpi", "Turvakäynti – suojaudu huijauksilta",
-                 "Käymme yhdessä läpi, miten huijaukset tunnistaa, ja laitan laitteittesi tietoturvan kuntoon. Opastan turvallisen pankki- ja viranomaisasioinnin (esim. OmaKanta, Kela).", "99 €")
+                 "Käymme yhdessä läpi, miten huijaukset tunnistaa, ja laitamme laitteittesi tietoturvan kuntoon. Opastamme turvallisen pankki- ja viranomaisasioinnin (esim. OmaKanta, Kela).", "99 €")
         + kortti("palapeli", "Muu apu tuntityönä",
                  "Mikä tahansa muu laite- tai digipulma: läppärit, tabletit, valokuvien siirto, videopuhelut lastenlasten kanssa…", "79 € <small>/ tunti</small>")
     )
@@ -287,8 +290,8 @@ def build_palvelut():
                     "Kaikki tehdään kotonasi, kiireettä ja selkokielellä. Hinnat ovat kiinteitä, joten tiedät kustannuksen etukäteen – ei yllätyksiä.")
         + '<section class="osio"><div class="sisalto reveal"><ul class="korttilista">'
         + kortit + '</ul>'
-        + '<div class="huomio turva"><p><strong>Turvalupaukseni:</strong> en koskaan kysy tai '
-          'käsittele pankkitunnuksiasi tai maksukorttisi tietoja. Kaikki asiointi tehdään niin, '
+        + '<div class="huomio turva"><p><strong>Turvalupauksemme:</strong> emme koskaan kysy '
+          'emmekä käsittele pankkitunnuksiasi tai maksukorttisi tietoja. Kaikki asiointi tehdään niin, '
           'että tunnukset pysyvät vain sinun käsissäsi.</p></div></div></section>'
         + '<section><div class="sisalto"><div class="kaista reveal">'
           '<span class="kulmake">Jatkuva apu</span>'
@@ -298,7 +301,7 @@ def build_palvelut():
           '<a class="nappi" href="digiturva.html">Tutustu Digiturvaan</a></div></div></section>'
     )
     write("palvelut.html", page("palvelut.html",
-        "Palvelut – ET Digiapu | Digiapua kotiin",
+        "Palvelut – eTuki | Digiapua kotiin",
         "Puhelimen vaihto ja tietojen siirto, reitittimen asennus, TV-boksin asennus, tulostin ja sähköposti kuntoon sekä turvakäynti huijauksia vastaan. Kiinteät hinnat, kotitalousvähennys.",
         body))
 
@@ -307,26 +310,26 @@ def build_palvelut():
 def build_digiturva():
     demo = (
         '<div class="demo" aria-label="Esimerkki huijaustarkistuksesta">'
-        '<div class="demo-otsake"><span class="pallura"></span> ET Digiturva · huijausvahti</div>'
+        '<div class="demo-otsake"><span class="pallura"></span> eTuki Digiturva · huijausvahti</div>'
         '<div class="kupla asiakas"><span class="liite">%s Kuvakaappaus.png</span></div>'
         '<div class="kupla asiakas">Tuliko tämä oikeasti Postilta? Pitää muka maksaa 2,99 € tullimaksu.</div>'
         '<div class="kupla turva"><span class="lippu">%s Tämä on huijaus</span>'
         'Tunnusmerkit: linkki vie osoitteeseen <strong>posti-fi.xyz</strong> (ei posti.fi), '
         'viesti kiirehtii maksamaan ja pyytää korttitietoja.</div>'
         '<div class="kupla turva">Älä klikkaa linkkiä äläkä anna korttitietoja. Poista viesti. '
-        'Jos ehdit jo klikata, soita minulle – autan heti.</div>'
+        'Jos ehdit jo klikata, soita meille – autamme heti.</div>'
         '<p class="demo-vihje">Esimerkki – näin huijausvahti vastaa.</p>'
         '</div>'
     ) % (I["kuva"], I["varoitus"])
 
     kortit = (
-        kortti("puhe", "Tekstiviestit", '"Pakettisi odottaa", "tilisi suljetaan", väärennetyt linkit. Tunnistan huijaustekstit ja vaaralliset linkit.')
-        + kortti("posti", "Sähköpostit", "Väärennetyt viestit pankilta, Postilta tai Verolta. Tarkistan lähettäjän ja sisällön puolestasi.")
-        + kortti("verkko", "Verkkosivut ja mainokset", 'Epäilyttävät kaupat ja "olet voittanut" -sivut. Kerron, onko sivu turvallinen vai huijaus.')
+        kortti("puhe", "Tekstiviestit", '"Pakettisi odottaa", "tilisi suljetaan", väärennetyt linkit. Tunnistamme huijaustekstit ja vaaralliset linkit.')
+        + kortti("posti", "Sähköpostit", "Väärennetyt viestit pankilta, Postilta tai Verolta. Tarkistamme lähettäjän ja sisällön puolestasi.")
+        + kortti("verkko", "Verkkosivut ja mainokset", 'Epäilyttävät kaupat ja "olet voittanut" -sivut. Kerromme, onko sivu turvallinen vai huijaus.')
         + kortti("esto", "Puhelut ja ”tukihenkilöt”", "Soittaja, joka pyytää tunnuksia tai etäyhteyttä. Neuvon, milloin pitää sulkea puhelin heti.")
     )
     body = (
-        sivuotsikko("ET Digiturva", "Oma huijausvahti taskussasi",
+        sivuotsikko("eTuki Digiturva", "Oma huijausvahti taskussasi",
                     "Huijaukset näyttävät nykyään aidoilta. Et ole yksin niiden kanssa: epäilyttävän viestin voi aina tarkistuttaa – ja vastauksen antaa ihminen, ei pelkkä kone.")
         + '<section class="osio"><div class="sisalto reveal">'
           '<div class="osio-otsikko"><span class="ylarivi">Miten se toimii</span>'
@@ -335,16 +338,16 @@ def build_digiturva():
           'verkkosivu tai soitto, joka pyytää tunnuksia – tarkistuta se ennen kuin teet mitään.</p></div>'
           + demo +
           '<ol class="vaiheet">'
-          '<li><h3>Ota kuvakaappaus</h3><p>Ota kuva epäilyttävästä viestistä. Opastan kuvan '
+          '<li><h3>Ota kuvakaappaus</h3><p>Ota kuva epäilyttävästä viestistä. Opastamme kuvan '
           'ottamisen, jos se tuntuu hankalalta.</p></li>'
-          '<li><h3>Lähetä se minulle</h3><p>Lähetä kuva WhatsAppilla tai tekstiviestillä '
+          '<li><h3>Lähetä se meille</h3><p>Lähetä kuva WhatsAppilla tai tekstiviestillä '
           'Digiturva-numeroon. Yksi viesti riittää.</p></li>'
           '<li><h3>Tekoäly analysoi heti</h3><p>Turva-tekoäly tunnistaa tyypilliset huijauksen '
           'merkit sekunneissa ja merkitsee, mikä viestissä on epäilyttävää.</p></li>'
-          '<li><h3>Ihminen varmistaa ja vastaa</h3><p>Tarkistan tuloksen itse ja vastaan '
+          '<li><h3>Ihminen varmistaa ja vastaa</h3><p>Tarkistamme tuloksen ja vastaamme '
           'selkokielellä: <strong>huijaus vai ei – ja mitä tehdä seuraavaksi.</strong></p></li></ol>'
           '<div class="huomio turva"><p><strong>Ihminen ratkaisee, ei botti.</strong> Tekoäly '
-          'auttaa tunnistamaan huijaukset nopeasti, mutta lopullisen arvion teen aina minä. Et '
+          'auttaa tunnistamaan huijaukset nopeasti, mutta lopullisen arvion tekee aina ihminen. Et '
           'koskaan jää pelkän koneen vastauksen varaan – etkä joudu jonottamaan.</p></div>'
           '</div></section>'
         + '<section class="osio"><div class="sisalto reveal">'
@@ -379,31 +382,31 @@ def build_digiturva():
           '<h2>Kysymyksiä Digiturvasta</h2></div>'
           '<details><summary>Mihin numeroon lähetän epäilyttävän viestin kuvan?</summary>'
           '<p>Saat jäsenenä oman Digiturva-numeron, johon lähetät kuvan WhatsAppilla tai '
-          'tekstiviestillä. Opastan kuvan ottamisen ja lähettämisen ensimmäisellä kerralla.</p></details>'
+          'tekstiviestillä. Opastamme kuvan ottamisen ja lähettämisen ensimmäisellä kerralla.</p></details>'
           '<details><summary>Korvaako tämä pankin tai poliisin?</summary>'
-          '<p>Ei korvaa. Autan tunnistamaan huijauksen ja kerron, mitä tehdä – esimerkiksi soittaa '
-          'pankin omaan asiakaspalveluun tai tehdä rikosilmoitus. Toimin tukenasi, en viranomaisena.</p></details>'
+          '<p>Ei korvaa. Autamme tunnistamaan huijauksen ja kerromme, mitä tehdä – esimerkiksi soittaa '
+          'pankin omaan asiakaspalveluun tai tehdä rikosilmoitus. Toimimme tukenasi, emme viranomaisena.</p></details>'
           '<details><summary>Käsitelläänkö lähettämiäni kuvia turvallisesti?</summary>'
           '<p>Kyllä. Kuvat käsitellään luottamuksellisesti ja vain tarkistusta varten, ja ne '
-          'poistetaan käsittelyn jälkeen. <strong>En koskaan pyydä pankkitunnuksiasi.</strong> '
+          'poistetaan käsittelyn jälkeen. <strong>Emme koskaan pyydä pankkitunnuksiasi.</strong> '
           'Lue lisää <a href="tietosuoja.html">tietosuojaselosteesta</a>.</p></details>'
           '<details><summary>Voinko lopettaa jäsenyyden milloin vain?</summary>'
           '<p>Voit. Jäsenyydessä ei ole sitoutumisaikaa, ja sen voi lopettaa yhdellä soitolla tai viestillä.</p></details>'
           '</div></section>'
         + '<section><div class="sisalto"><div class="kaista reveal">'
           '<h2>Aloita turva jo tänään</h2>'
-          '<p>Soita, niin käymme yhdessä läpi sopivan jäsenyyden ja otan huijausvahdin käyttöösi heti.</p>'
+          '<p>Soita, niin käymme yhdessä läpi sopivan jäsenyyden ja otamme huijausvahdin käyttöösi heti.</p>'
           '<a class="nappi" href="tel:%s">%s Soita %s</a></div></div></section>'
           % (PUH_NUM, I["puhelin"], PUH_NAYTTO_TAVALLINEN)
     )
     jsonld = ('<script type="application/ld+json">{"@context":"https://schema.org","@type":"Service",'
               '"serviceType":"Huijaustarkistus ja digiturvan jäsenyys",'
-              '"provider":{"@type":"LocalBusiness","name":"ET Digiapu & Digiturva"},'
+              '"provider":{"@type":"LocalBusiness","name":"eTuki"},'
               '"areaServed":"Suomi","offers":[{"@type":"Offer","name":"Digiturva Perus","price":"24.90","priceCurrency":"EUR"},'
               '{"@type":"Offer","name":"Digiturva Plus","price":"39.90","priceCurrency":"EUR"}]}</script>')
     write("digiturva.html", page("digiturva.html",
-        "Digiturva – huijausvahti ja jäsenyys senioreille | ET Digiapu",
-        "ET Digiturva on jatkuva suoja huijauksia vastaan: lähetä kuvakaappaus epäilyttävästä viestistä, tekoäly analysoi sen ja ihminen varmistaa. Jäsenyys alkaen 24,90 €/kk, ei sitoutumisaikaa.",
+        "Digiturva – huijausvahti ja jäsenyys senioreille | eTuki",
+        "eTuki Digiturva on jatkuva suoja huijauksia vastaan: lähetä kuvakaappaus epäilyttävästä viestistä, tekoäly analysoi sen ja ihminen varmistaa. Jäsenyys alkaen 24,90 €/kk, ei sitoutumisaikaa.",
         body, extra_jsonld=jsonld))
 
 
@@ -437,21 +440,23 @@ def build_hinnat():
           'oikeuttavaa työtä</strong>. Vuonna 2025 vähennys on <strong>35 % työn osuudesta</strong>, '
           'enimmäismäärä <strong>1 600 € henkilöä kohden</strong> ja omavastuu <strong>150 € '
           'vuodessa</strong>.</p>'
+          '<p>eTuki on merkitty <strong>ennakkoperintärekisteriin</strong>, joten teettämäsi työ '
+          'oikeuttaa kotitalousvähennykseen.</p>'
           '<div class="huomio varoitus"><p><strong>Tulossa mahdollisesti 2026:</strong> hallitus '
           'on esittänyt vähennyksen korottamista 40 %:iin ja enimmäismäärän nostoa 2 100 euroon. '
           'Muutos ei ole vielä vahvistettu – tarkista voimassa olevat tiedot aina osoitteesta '
           '<a href="https://www.vero.fi/henkiloasiakkaat/verokortti-ja-veroilmoitus/tulot-ja-vahennykset/kotitalousvahennys/">vero.fi</a>.</p></div>'
           '<p>Koska omavastuu on 150 € vuodessa, vähennys hyödyttää eniten silloin, kun työ on '
           'isompi tai käyntejä on vuoden aikana useita. Yksittäisestä pienestä käynnistä '
-          'vähennystä ei käytännössä jää. Saat minulta aina kuitin, jossa <strong>työn osuus on '
-          'eritelty valmiiksi</strong> – ja jos haluat, autan vähennyksen ilmoittamisessa '
+          'vähennystä ei käytännössä jää. Saat meiltä aina kuitin, jossa <strong>työn osuus on '
+          'eritelty valmiiksi</strong> – ja jos haluat, autamme vähennyksen ilmoittamisessa '
           'OmaVerossa.</p>'
-          '<div class="huomio"><p><strong>Ei piilokuluja:</strong> kerron aina hinnan ennen työn '
-          'aloittamista. Jos en pysty auttamaan pulmassasi, käynti ei maksa mitään.</p></div>'
+          '<div class="huomio"><p><strong>Ei piilokuluja:</strong> kerromme aina hinnan ennen työn '
+          'aloittamista. Jos emme pysty auttamaan pulmassasi, käynti ei maksa mitään.</p></div>'
           '<p><a class="nappi" href="yhteys.html">Soita ja sovi käynti</a></p></div></section>'
     )
     write("hinnat.html", page("hinnat.html",
-        "Hinnat ja kotitalousvähennys – ET Digiapu",
+        "Hinnat ja kotitalousvähennys – eTuki",
         "Selkeät kiinteät hinnat digiavulle kotiin sekä Digiturva-jäsenyys alkaen 24,90 €/kk. Työ oikeuttaa kotitalousvähennykseen (2025: 35 %, enintään 1 600 €).",
         body))
 
@@ -463,7 +468,7 @@ def build_lahjakortti():
                     "Asutko eri paikkakunnalla kuin vanhempasi? Anna lahjaksi tuttu auttaja, jolle voi soittaa silloinkin kun sinä et ehdi.")
         + '<section class="osio"><div class="sisalto reveal">'
           '<p>Toistuvatko samat puhelut: <em>"taas tämä puhelin tekee jotain outoa"</em> – etkä '
-          'pysty auttamaan etänä? Tulen paikan päälle, laitan laitteet kuntoon ja opastan käytön '
+          'pysty auttamaan etänä? Tulemme paikan päälle, laitamme laitteet kuntoon ja opastamme käytön '
           'rauhassa ja selkokielellä. Sinä saat mielenrauhan, ja vanhempasi tutun auttajan jatkoa varten.</p>'
           '<div class="paketit">'
           '<div class="paketti"><h3>Lahjakortti – kotikäynti</h3>'
@@ -484,65 +489,91 @@ def build_lahjakortti():
           '<h2>Näin se toimii</h2><ol class="vaiheet">'
           '<li><h3>Ota yhteyttä</h3><p>Kerro kenelle lahja tulee ja millaisten laitteiden kanssa '
           'kaivataan apua.</p></li>'
-          '<li><h3>Saat lahjakortin</h3><p>Lähetän kauniin lahjakortin sähköpostiisi '
+          '<li><h3>Saat lahjakortin</h3><p>Lähetämme kauniin lahjakortin sähköpostiisi '
           'tulostettavaksi tai postitse suoraan saajalle.</p></li>'
-          '<li><h3>Sovin käynnin</h3><p>Sovin ajan saajan kanssa ja soitan sinulle jälkikäteen, '
+          '<li><h3>Sovimme käynnin</h3><p>Sovimme ajan saajan kanssa ja soitamme sinulle jälkikäteen, '
           'jos haluat kuulla miten meni.</p></li></ol>'
           '<div class="huomio"><p><strong>Vinkki:</strong> lahjakortti sopii äitienpäivään, '
           'isänpäivään, jouluun ja merkkipäiviin – se on lahja, joka säästää hermoja koko perheeltä.</p></div>'
           '<p><a class="nappi" href="yhteys.html">Tilaa lahjakortti</a></p></div></section>'
     )
     write("lahjakortti.html", page("lahjakortti.html",
-        "Lahjakortti – anna digiapua lahjaksi vanhemmillesi | ET Digiapu",
+        "Lahjakortti – anna digiapua lahjaksi vanhemmillesi | eTuki",
         "Anna äidille tai isälle lahjaksi kotikäynti tai Digiturva-jäsenyys: laitteet kuntoon ja suoja huijauksilta. Sopii äitienpäivään, isänpäivään ja jouluun.",
         body))
 
 
-# --- minusta ---
-def build_minusta():
+# --- meistä / tiimi ---
+def jasenkortti(nimi, rooli, esittely):
+    return ('<li class="kortti"><div class="ikoni">%s</div><h3>%s</h3>'
+            '<p class="haalea"><strong>%s</strong><br>%s</p></li>'
+            ) % (I["henkilo"], nimi, rooli, esittely)
+
+
+def build_meista():
     proms = (
-        kortti("sydan", "Sama tuttu auttaja", "Ei vaihtuvia asentajia eikä puhelinjonoja – aina minä.")
-        + kortti("esto", "En myy ylimääräistä", "En liittymiä, en laitteita, en lisäpalveluja, joita et tarvitse.")
-        + kortti("lukko", "En kysy pankkitunnuksia", "Tunnukset ja salasanat pysyvät aina vain sinulla.")
-        + kortti("puhe", "Selkokielellä", "Kerron hinnan etukäteen, ja jos en pysty auttamaan, käynti ei maksa mitään.")
+        kortti("sydan", "Oma nimetty auttaja", "Saat oman tutun auttajan – sama kasvo, ei vaihtuvaa tukinumeroa eikä jonoja.")
+        + kortti("esto", "Emme myy ylimääräistä", "Emme liittymiä, emme laitteita, emme lisäpalveluja, joita et tarvitse.")
+        + kortti("lukko", "Emme kysy pankkitunnuksia", "Tunnukset ja salasanat pysyvät aina vain sinulla.")
+        + kortti("puhe", "Selkokielellä", "Kerromme hinnan etukäteen, ja jos emme pysty auttamaan, käynti ei maksa mitään.")
+    )
+    tiimi = (
+        jasenkortti("[Nimi]", "Perustaja", "[Lyhyt esittely – täydennetään.]")
+        + jasenkortti("[Nimi]", "Digiauttaja", "[Lyhyt esittely – täydennetään.]")
+        + jasenkortti("[Nimi]", "Digiauttaja", "[Lyhyt esittely – täydennetään.]")
+    )
+    merkit = (
+        '<ul class="korttilista">'
+        + kortti("merkki", "Y-tunnus", "%s" % YTUNNUS)
+        + kortti("merkki", "Ennakkoperintärekisteri", "Olemme rekisterissä – työ oikeuttaa kotitalousvähennykseen.")
+        + kortti("merkki", "Vastuuvakuutus", "Toiminnallamme on vastuuvakuutus kotikäyntejä varten.")
+        + '</ul>'
     )
     body = (
-        sivuotsikko("Tutustu auttajaasi", "Minusta",
-                    "Sama tuttu ihminen joka kerta – ei vaihtuvia asentajia eikä puhelinjonoja.")
+        sivuotsikko("Tutustu tiimiin", "Meistä",
+                    "eTuki on suomalainen yritys, joka tuo digiavun ja huijaussuojan kotiisi – ihmisiltä, joita et joudu jonottamaan.")
         + '<section class="osio"><div class="sisalto reveal">'
-          '<p>Olen <strong>%s</strong>, ja autan ikäihmisiä digilaitteiden ja sähköisen asioinnin '
-          'kanssa alueella [Kaupunki].</p>'
-          '<p>Moni on huomannut saman: pankki, Kela ja jopa oma terveysasema hoituvat nykyään '
-          'netissä, mutta kukaan ei ehdi opastaa. Omat lapset asuvat kaukana tai vaihtavat '
-          'asetukset nopeasti puolestasi – ja ensi viikolla olet taas yksin saman pulman kanssa.</p>'
-          '<p>Minä teen toisin. Istun viereesi, etenemme sinun tahdissasi ja kokeilet itse, niin '
-          'että opit – sama asia kerrataan niin monta kertaa kuin tarvitaan. Autan sinua kuin '
-          'auttaisin omia vanhempiani.</p>'
-          '<p>Taustallani on kuusi vuotta työtä asiakkaiden kanssa, joten osaan selittää asiat '
-          'ilman tietokonekieltä. Tärkeintä ei ole tekniikka vaan se, että sinulla on rauhallinen '
-          'ja turvallinen olo.</p>'
-          '<h2>Lupaukseni sinulle</h2><ul class="korttilista">' % NIMI
+          '<p>Moni ikäihminen on huomannut saman: pankki, Kela ja jopa oma terveysasema hoituvat '
+          'nykyään netissä, mutta kukaan ei ehdi opastaa. Omat lapset asuvat kaukana tai vaihtavat '
+          'asetukset nopeasti puolesta – ja ensi viikolla olet taas yksin saman pulman kanssa.</p>'
+          '<p>eTuki tekee toisin. Istumme viereesi, etenemme sinun tahdissasi ja annamme sinun '
+          'kokeilla itse, niin että opit – sama asia kerrataan niin monta kertaa kuin tarvitaan. '
+          'Kohtelemme jokaista asiakasta kuin omaa vanhempaamme.</p>'
+          '<div class="huomio turva"><p><strong>Perustajan tarina.</strong> Olen <strong>%s</strong>, '
+          'eTukin perustaja. Taustallani on kuusi vuotta työtä asiakkaiden kanssa, ja tulen toimeen '
+          'erityisen hyvin ikäihmisten kanssa. Perustin eTukin, koska halusin auttaa heitä, joita '
+          'tekniikka jättää jalkoihinsa – samalla lämmöllä kuin auttaisin omia vanhempiani. Nyt '
+          'meitä on jo useampi, mutta sama periaate pätee: kiireetön, selkokielinen ja rehellinen apu.</p></div>'
+          '<h2>Tiimimme</h2>'
+          '<div class="huomio varoitus"><p><strong>Huom:</strong> tiimin tiedot täydennetään, kun '
+          'henkilöt ovat mukana. Alla esimerkkimuotoilu.</p></div>'
+          '<ul class="korttilista">' % NIMI
+        + tiimi +
+          '</ul>'
+          '<h2>Lupauksemme sinulle</h2><ul class="korttilista">'
         + proms +
-          '</ul><p><a class="nappi" href="yhteys.html">Soita minulle – jutellaan</a></p></div></section>'
+          '</ul>'
+          '<h2>Luotettava kumppani</h2>' + merkit +
+          '<p><a class="nappi" href="yhteys.html">Soita meille – jutellaan</a></p></div></section>'
     )
-    write("minusta.html", page("minusta.html",
-        "Minusta – ET Digiapu",
-        "Tutustu auttajaasi: kuusi vuotta asiakaspalvelukokemusta ja aito halu auttaa ikäihmisiä digiasioissa. Sama tuttu auttaja joka kerta, selkokielellä.",
-        body, active="minusta.html"))
+    write("meista.html", page("meista.html",
+        "Meistä – eTuki",
+        "Tutustu eTukin tiimiin: kuuden vuoden asiakaspalvelukokemus ja aito halu auttaa ikäihmisiä digiasioissa. Oma nimetty auttaja, selkokielellä.",
+        body, active="meista.html"))
 
 
 # --- yhteys ---
 def build_yhteys():
     body = (
         sivuotsikko("Ota yhteyttä", "Soita, niin sovitaan",
-                    "Helpoin tapa on soittaa – vastaan arkisin klo 9–18. Jos en pääse vastaamaan, soitan takaisin saman päivän aikana.")
+                    "Helpoin tapa on soittaa – vastaamme arkisin klo 9–18. Jos emme pääse vastaamaan, soitamme takaisin saman päivän aikana.")
         + '<section class="osio"><div class="sisalto reveal">'
           '<div class="kaista"><a class="puhelin-iso" href="tel:%s" style="color:#fff">%s %s</a>'
           '<p>Voit myös lähettää viestin WhatsAppilla tai sähköpostilla: '
           '<a href="%s" style="color:#fff">WhatsApp</a> · '
           '<a href="mailto:%s" style="color:#fff">%s</a></p></div>'
           '<h2>Jätä soittopyyntö</h2>'
-          '<p>Jos soittaminen ei juuri nyt sovi, jätä numerosi alle, niin soitan sinulle. Tämä '
+          '<p>Jos soittaminen ei juuri nyt sovi, jätä numerosi alle, niin soitamme sinulle. Tämä '
           'sopii hyvin myös, jos tilaat apua vanhemmallesi tai haluat liittyä Digiturva-jäseneksi.</p>'
           '<form action="https://formspree.io/f/LOMAKETUNNUS" method="POST">'
           '<label for="nimi">Nimesi</label>'
@@ -557,14 +588,14 @@ def build_yhteys():
           '<button class="nappi" type="submit">Lähetä soittopyyntö</button></form>'
           '<h2>Epäilyttävä viesti juuri nyt?</h2>'
           '<p>Jos sait viestin, joka epäilyttää, älä klikkaa linkkejä äläkä anna tunnuksia. Ota '
-          'kuvakaappaus ja lähetä se minulle WhatsAppilla – tarkistan sen puolestasi. '
+          'kuvakaappaus ja lähetä se meille WhatsAppilla – tarkistamme sen puolestasi. '
           '<a href="digiturva.html">Lue lisää Digiturvasta.</a></p>'
           '<h2>Palvelualue</h2><p>%s. Matkat sisältyvät hintaan palvelualueella – kauempanakin '
           'asuvat voivat kysyä, sovitaan erikseen.</p></div></section>'
     ) % (PUH_NUM, I["puhelin"], PUH_NAYTTO, WA_URL, EMAIL, EMAIL, ALUE)
     write("yhteys.html", page("yhteys.html",
-        "Yhteystiedot – ET Digiapu & Digiturva",
-        "Soita ja sovi kotikäynti tai liity Digiturva-jäseneksi. Voit myös jättää soittopyynnön, niin soitan takaisin. Palvelualue [Kaupunki] ja lähialueet.",
+        "Yhteystiedot – eTuki",
+        "Soita ja sovi kotikäynti tai liity Digiturva-jäseneksi. Voit myös jättää soittopyynnön, niin soitamme takaisin. Palvelualue [Kaupunki] ja lähialueet.",
         body))
 
 
@@ -595,7 +626,7 @@ def build_vinkit():
           'viestit puolestasi.</p></div></div></section>'
     )
     write("vinkit.html", page("vinkit.html",
-        "Vinkit ja artikkelit – ET Digiapu",
+        "Vinkit ja artikkelit – eTuki",
         "Selkokielisiä ohjeita huijauksilta suojautumiseen ja arjen digiasioihin: huijausviestit, puhelinhuijaukset ja uuden puhelimen käyttöönotto.",
         body))
 
@@ -603,17 +634,17 @@ def build_vinkit():
 def artikkeli(slug, otsikko, kuvaus, sisalto):
     jsonld = ('<script type="application/ld+json">{"@context":"https://schema.org","@type":"Article",'
               '"headline":"%s","inLanguage":"fi","author":{"@type":"Person","name":"%s"},'
-              '"publisher":{"@type":"Organization","name":"ET Digiapu & Digiturva"}}</script>'
+              '"publisher":{"@type":"Organization","name":"eTuki"}}</script>'
               ) % (otsikko, NIMI)
     body = (
         sivuotsikko("Vinkit", otsikko, kuvaus)
         + '<section class="osio"><div class="sisalto reveal artikkeli">' + sisalto
         + '<div class="huomio turva"><p><strong>Etkö ole varma?</strong> Lähetä kuvakaappaus '
           'epäilyttävästä viestistä WhatsAppilla – <a href="digiturva.html">Digiturva</a> '
-          'tarkistaa sen puolestasi. Tai <a href="yhteys.html">soita minulle</a>.</p></div>'
+          'tarkistaa sen puolestasi. Tai <a href="yhteys.html">soita meille</a>.</p></div>'
           '<p><a href="vinkit.html">← Takaisin vinkkeihin</a></p></div></section>'
     )
-    write(slug, page(slug, otsikko + " – ET Digiapu", kuvaus, body, active="vinkit.html", extra_jsonld=jsonld))
+    write(slug, page(slug, otsikko + " – eTuki", kuvaus, body, active="vinkit.html", extra_jsonld=jsonld))
 
 
 def build_artikkelit():
@@ -664,30 +695,30 @@ def build_artikkelit():
         '<h2>Vaihdon jälkeen</h2><ul><li>Tarkista, että pääset pankkiin ja sähköpostiin.</li>'
         '<li>Säilytä vanha puhelin muutama viikko, kunnes kaikki varmasti toimii.</li>'
         '<li>Tyhjennä vanha puhelin vasta sitten tehdasasetuksiin, jos luovut siitä.</li></ul>'
-        '<p>Jos tämä tuntuu työläältä, teen sen puolestasi kotikäynnillä – mitään ei katoa.</p>')
+        '<p>Jos tämä tuntuu työläältä, teemme sen puolestasi kotikäynnillä – mitään ei katoa.</p>')
 
 
 # --- tietosuoja ---
 def build_tietosuoja():
     body = (
         sivuotsikko("Tietosuoja", "Tietosuojaseloste",
-                    "Näin käsittelen henkilötietoja. Tietoja kerätään vain sen verran kuin palvelun hoitaminen vaatii.")
+                    "Näin käsittelemme henkilötietoja. Tietoja kerätään vain sen verran kuin palvelun hoitaminen vaatii.")
         + '<section class="osio"><div class="sisalto reveal artikkeli">'
           '<div class="huomio varoitus"><p><strong>Luonnos:</strong> täydennä hakasulkeissa olevat '
           'kohdat (rekisterinpitäjä, yhteystiedot, käytetyt palvelut) ennen julkaisua. Tämä on '
           'EU:n yleisen tietosuoja-asetuksen (GDPR) mukainen seloste.</p></div>'
-          '<h2>1. Rekisterinpitäjä</h2><p>%s, Y-tunnus %s. Yhteys: <a href="mailto:%s">%s</a>, '
+          '<h2>1. Rekisterinpitäjä</h2><p>eTuki (%s), Y-tunnus %s. Yhteys: <a href="mailto:%s">%s</a>, '
           'puhelin <a href="tel:%s">%s</a>.</p>'
           '<h2>2. Mitä tietoja kerätään</h2><p>Soittopyyntö- ja yhteydenottolomakkeen kautta: nimi '
           'ja puhelinnumero sekä vapaaehtoinen viesti. Asiakassuhteessa lisäksi käyntiin liittyvät '
-          'tiedot ja laskutustiedot. Digiturva-palvelussa käsittelen lähettämiäsi kuvakaappauksia.</p>'
+          'tiedot ja laskutustiedot. Digiturva-palvelussa käsittelemme lähettämiäsi kuvakaappauksia.</p>'
           '<h2>3. Mihin tietoja käytetään ja millä perusteella</h2><p>Tietoja käytetään '
           'yhteydenottoon, palvelun toteuttamiseen ja laskutukseen. Käsittelyn peruste on '
           'suostumuksesi (yhteydenotto) sekä asiakassopimuksen valmistelu ja täyttäminen. '
           'Tietoja ei käytetä markkinointiin ilman erillistä lupaa eikä luovuteta ulkopuolisille.</p>'
           '<h2>4. Kuvakaappausten käsittely (Digiturva)</h2><p>Lähettämäsi kuvat voivat sisältää '
           'henkilötietoja. Ne käsitellään luottamuksellisesti ja vain huijauksen arviointia '
-          'varten, ja ne poistetaan, kun asia on käsitelty. <strong>En koskaan pyydä tai tallenna '
+          'varten, ja ne poistetaan, kun asia on käsitelty. <strong>Emme koskaan pyydä emmekä tallenna '
           'pankkitunnuksia tai maksukortin tietoja.</strong> Älä lähetä kuvissa tunnuslukuja.</p>'
           '<h2>5. Säilytysaika</h2><p>Yhteydenottotietoja säilytetään vain niin kauan kuin asian '
           'hoitaminen vaatii. Lakisääteiset laskutustiedot säilytetään kirjanpitolain edellyttämän '
@@ -702,8 +733,8 @@ def build_tietosuoja():
           '<p><a class="nappi toissijainen" href="yhteys.html">Ota yhteyttä</a></p></div></section>'
     ) % (NIMI, YTUNNUS, EMAIL, EMAIL, PUH_NUM, PUH_NAYTTO_TAVALLINEN)
     write("tietosuoja.html", page("tietosuoja.html",
-        "Tietosuojaseloste – ET Digiapu",
-        "Näin ET Digiapu käsittelee henkilötietoja GDPR:n mukaisesti. Tietoja kerätään vain palvelun hoitamiseksi, eikä pankkitunnuksia koskaan pyydetä.",
+        "Tietosuojaseloste – eTuki",
+        "Näin eTuki käsittelee henkilötietoja GDPR:n mukaisesti. Tietoja kerätään vain palvelun hoitamiseksi, eikä pankkitunnuksia koskaan pyydetä.",
         body, active="tietosuoja.html"))
 
 
@@ -711,7 +742,7 @@ def main():
     os.makedirs(os.path.join(ROOT, "css"), exist_ok=True)
     os.makedirs(os.path.join(ROOT, "js"), exist_ok=True)
     build_index(); build_palvelut(); build_digiturva(); build_hinnat()
-    build_lahjakortti(); build_minusta(); build_yhteys(); build_vinkit()
+    build_lahjakortti(); build_meista(); build_yhteys(); build_vinkit()
     build_artikkelit(); build_tietosuoja()
     print("Tuotettu %d sivua." % (10 + len(ARTIKKELIT)))
 

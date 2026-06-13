@@ -2,4 +2,4 @@ User-agent: *
 Allow: /
 
 # Päivitä oikea domain ennen julkaisua
-Sitemap: https://www.etdigiapu.fi/sitemap.xml
+Sitemap: https://www.etuki.fi/sitemap.xml

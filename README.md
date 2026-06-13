@@ -1,4 +1,4 @@
-# ET Digiapu & Digiturva – kotisivut
+# eTuki – kotisivut
 
 Staattinen kotisivusto digiapupalvelulle. Kaksi tuotetta: **kotikäynnit**
 senioreille (puhelin, netti, TV, turvallinen asiointi) ja **Digiturva-jäsenyys**
@@ -19,7 +19,7 @@ Ei ulkoisia fontteja eikä seurantaa (tietosuojasyistä).
 | `hinnat.html` | Hinnasto, jäsenyydet ja kotitalousvähennys |
 | `vinkit.html` + `vinkit-*.html` | Vinkit-osio: 3 huijausvalistusartikkelia (Google-näkyvyys) |
 | `lahjakortti.html` | Lahjakortit (kohderyhmänä aikuiset lapset) |
-| `minusta.html` | Esittely ja lupaukset |
+| `meista.html` | Yritys-esittely, perustajan tarina, tiimi, lupaukset, luotettavuusmerkit |
 | `yhteys.html` | Puhelin, soittopyyntölomake (suostumus), WhatsApp |
 | `tietosuoja.html` | GDPR-tietosuojaseloste (luonnospohja) |
 
@@ -41,8 +41,15 @@ yksittäisiä HTML-tiedostoja), aja skripti ja committaa tulos.
 
 ## Ennen julkaisua: täytä paikkamerkit (tiedostossa `tools/build.py`)
 
-- [ ] `NIMI` → oma nimesi
-- [ ] `ALUE` → palvelualue ([Kaupunki] ja lähialueet, myös `minusta`-tekstissä)
+- [ ] `BRAND` / nimi → **eTuki** on nykyinen työnimi (vaihtoehto: **Digissä**).
+      Vaihto: päivitä `BRAND`-vakio, logon teksti (`header`-funktio) ja `og-kuva.svg`,
+      ja aja generaattori + OG-kuvan uudelleenrender.
+- [ ] `NIMI` → perustajan nimi (myös `meista`-sivun tiimikorteissa `[Nimi]`)
+- [ ] `ALUE` → palvelualue ([Kaupunki] ja lähialueet, myös `meista`-tekstissä)
+- [ ] **Ennakkoperintärekisteri** – varmista, että yritys on rekisterissä ENNEN kuin
+      kotitalousvähennys-väite julkaistaan (`build_hinnat`, `build_meista`)
+- [ ] **Vastuuvakuutus** – ota vakuutus ja päivitä `meista`-sivun merkki todeksi
+- [ ] **Tiimikortit** (`build_meista`) – täytä oikeat nimet, roolit ja esittelyt
 - [ ] `YTUNNUS` → oikea Y-tunnus
 - [ ] `PUH_NUM` / `PUH_NAYTTO` / `WA_NUM` → oikea puhelinnumero
 - [ ] `EMAIL`, `DOMAIN` → oikea sähköposti ja verkkotunnus (myös `robots.txt`, `sitemap.xml`)
