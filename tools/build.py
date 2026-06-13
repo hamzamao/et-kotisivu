@@ -86,7 +86,7 @@ def header(active):
     return (
         '<a class="ohita" href="#sisalto">Siirry sisältöön</a>'
         '<header class="ylatunniste"><div class="sisalto">'
-        '<a class="logo" href="index.html">%s e<span style="color:#ea580c">T</span>uki</a>'
+        '<a class="logo" href="index.html">%s<span class="merkkiteksti">eTuki</span></a>'
         '<nav class="navigaatio" aria-label="Päävalikko"><ul>%s</ul></nav>'
         '</div></header>' % (LOGO_SVG, items)
     )
