@@ -60,6 +60,10 @@ yksittäisiä HTML-tiedostoja), aja skripti ja committaa tulos.
       luvalla** julkaistavilla palautteilla
 - [ ] Tietosuojaseloste (`tietosuoja.html`): täytä rekisterinpitäjä ja käsittelijät
 - [ ] Kotitalousvähennys: tarkista voimassa olevat luvut **vero.fi**
+- [ ] Maksumerkit (footer, `MERKKI_*`-vakiot): Visa/Mastercard ovat tavaramerkkejä –
+      tarkista kunkin brändin viralliset logo-ohjeet ja näytä vain ne maksutavat,
+      jotka oikeasti hyväksytte. "Kotitalousvähennys"-merkki edellyttää
+      ennakkoperintärekisteriä (ks. yllä).
 
 ## Tietosuoja (EU / GDPR)
 

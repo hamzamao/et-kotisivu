@@ -94,6 +94,45 @@ def header(active):
     )
 
 
+# --- Maksu- ja luottamusmerkit (itse-hostatut SVG:t, ei ulkoisia logoja) ---
+# HUOM: Visa/Mastercard ovat tavaramerkkejä. Nämä ovat brändinmukaiset paikkamerkit –
+# tarkista viralliset logo-ohjeet ennen julkaisua (ks. README:n muistilista).
+MERKKI_VISA = (
+    '<span class="merkki" role="img" aria-label="Visa">'
+    '<svg viewBox="0 0 48 18" aria-hidden="true">'
+    '<text x="24" y="14" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" '
+    'font-weight="700" font-style="italic" font-size="15" fill="#1434cb">VISA</text>'
+    '</svg></span>'
+)
+MERKKI_MASTERCARD = (
+    '<span class="merkki" role="img" aria-label="Mastercard">'
+    '<svg viewBox="0 0 40 24" aria-hidden="true">'
+    '<circle cx="15" cy="12" r="9" fill="#eb001b"/>'
+    '<circle cx="25" cy="12" r="9" fill="#f79e1b"/>'
+    '<ellipse cx="20" cy="12" rx="4" ry="7.4" fill="#ff5f00"/>'
+    '</svg></span>'
+)
+MERKKI_LASKU = (
+    '<span class="merkki merkki-teksti">'
+    '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" '
+    'stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">'
+    '<path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>'
+    '<polyline points="14 2 14 8 20 8"/><line x1="8" y1="13" x2="16" y2="13"/>'
+    '<line x1="8" y1="17" x2="13" y2="17"/></svg><span>Lasku</span></span>'
+)
+MERKKI_KOTITALOUS = (
+    '<span class="merkki merkki-teksti kotitalous">'
+    '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" '
+    'stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">'
+    '<path d="M3 11l9-8 9 8"/><path d="M5 10v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V10"/>'
+    '<polyline points="9 14 11 16 15 12"/></svg><span>Kotitalousvähennys</span></span>'
+)
+MAKSUMERKIT = (
+    '<div class="maksumerkit">'
+    + MERKKI_VISA + MERKKI_MASTERCARD + MERKKI_LASKU + MERKKI_KOTITALOUS +
+    '</div>'
+)
+
 FOOTER = (
     '<footer class="alatunniste"><div class="sisalto">'
     '<div class="sarakkeet">'
@@ -114,6 +153,7 @@ FOOTER = (
     '<li><a href="meista.html">Meistä</a></li>'
     '<li><a href="tietosuoja.html">Tietosuojaseloste</a></li>'
     '</ul></div></div>'
+    + MAKSUMERKIT +
     '<p class="pohja">Emme koskaan kysy emmekä käsittele pankkitunnuksiasi tai korttisi tietoja – missään tilanteessa.</p>'
     '</div></footer>'
 ) % (NIMI, YTUNNUS, PUH_NUM, PUH_NAYTTO_TAVALLINEN, WA_URL, PUH_NAYTTO_TAVALLINEN, EMAIL, EMAIL, ALUE)
