@@ -749,7 +749,7 @@ def build_404():
         sivuotsikko("Hups", "Sivua ei löytynyt",
                     "Etsimääsi sivua ei ole olemassa tai se on siirretty. Ei hätää – tästä pääset eteenpäin.")
         + '<section class="osio"><div class="sisalto reveal">'
-          '<p>Tarkista osoite tai siirry suoraan:</p>'
+          '<h2>Tarkista osoite tai siirry suoraan</h2>'
           '<div class="hero-cta">'
           '<a class="nappi" href="index.html">Etusivulle</a>'
           '<a class="nappi toissijainen" href="palvelut.html">Palvelut</a>'
