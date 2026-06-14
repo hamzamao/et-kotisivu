@@ -24,7 +24,7 @@ Ei ulkoisia fontteja eikä seurantaa (tietosuojasyistä).
 | `tietosuoja.html` | GDPR-tietosuojaseloste (luonnospohja) |
 
 Aputiedostot: `css/style.css`, `js/main.js` (esiintuloanimaatiot + demo),
-`favicon.svg`, `og-kuva.svg`/`og-kuva.png` (jakokuva), `robots.txt`, `sitemap.xml`.
+`favicon.svg`, `og-kuva.svg` (lähde) / `og-kuva.jpg` (renderöity jakokuva), `robots.txt`, `sitemap.xml`.
 
 ## Sivujen tuottaminen (kehittäjälle)
 

@@ -45,7 +45,6 @@ I = {
     "puhe": _svg('<path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>'),
     "varoitus": _svg('<path d="M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/>'),
     "kuva": _svg('<rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/>'),
-    "wa": _svg('<path d="M21 11.5a8.4 8.4 0 0 1-12.3 7.4L3 21l2.2-5.6A8.4 8.4 0 1 1 21 11.5z"/>'),
     "henkilo": _svg('<circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-6 8-6s8 2 8 6"/>'),
     "merkki": _svg('<path d="M12 2 4 5v6c0 5 3.5 8.5 8 11 4.5-2.5 8-6 8-11V5l-8-3z"/><polyline points="9 12 11 14 15 10"/>'),
     "valikko": _svg('<line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/>'),
@@ -165,7 +164,7 @@ SOITA_PALKKI = ('<div class="soita-palkki"><a href="tel:%s" class="nappi">%s Soi
 def page(slug, title, desc, body, active=None, extra_jsonld="", scripts=True):
     active = active or slug
     canonical = "%s/%s" % (DOMAIN, "" if slug == "index.html" else slug)
-    og_img = "%s/og-kuva.png" % DOMAIN
+    og_img = "%s/og-kuva.jpg" % DOMAIN
     head = (
         '<!DOCTYPE html><html lang="fi"><head>'
         '<meta charset="utf-8">'

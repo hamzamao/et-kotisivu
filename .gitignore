@@ -15,3 +15,14 @@
 # Välimuistit ja muut
 Thumbs.db
 Icon?
+
+# Python (build.py-työkalun välimuisti)
+__pycache__/
+*.pyc
+
+# Ympäristö ja salaisuudet (backend-vaihetta varten)
+.env
+.env.*
+
+# Riippuvuudet
+node_modules/
