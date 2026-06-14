@@ -743,13 +743,36 @@ def build_tietosuoja():
         body, active="tietosuoja.html"))
 
 
+# --- 404 ---
+def build_404():
+    body = (
+        sivuotsikko("Hups", "Sivua ei löytynyt",
+                    "Etsimääsi sivua ei ole olemassa tai se on siirretty. Ei hätää – tästä pääset eteenpäin.")
+        + '<section class="osio"><div class="sisalto reveal">'
+          '<p>Tarkista osoite tai siirry suoraan:</p>'
+          '<div class="hero-cta">'
+          '<a class="nappi" href="index.html">Etusivulle</a>'
+          '<a class="nappi toissijainen" href="palvelut.html">Palvelut</a>'
+          '<a class="nappi toissijainen" href="digiturva.html">Digiturva</a>'
+          '<a class="nappi toissijainen" href="yhteys.html">Yhteystiedot</a>'
+          '</div>'
+          '<div class="huomio"><p>Etkö löytänyt etsimääsi? <a href="tel:%s">Soita %s</a> '
+          'tai lue <a href="vinkit.html">vinkit huijauksilta suojautumiseen</a>.</p></div>'
+          '</div></section>'
+    ) % (PUH_NUM, PUH_NAYTTO_TAVALLINEN)
+    write("404.html", page("404.html",
+        "Sivua ei löytynyt – eTuki",
+        "Etsimääsi sivua ei löytynyt. Palaa etusivulle tai ota yhteyttä eTukiin.",
+        body, extra_jsonld='<meta name="robots" content="noindex">'))
+
+
 def main():
     os.makedirs(os.path.join(ROOT, "css"), exist_ok=True)
     os.makedirs(os.path.join(ROOT, "js"), exist_ok=True)
     build_index(); build_palvelut(); build_digiturva(); build_hinnat()
     build_lahjakortti(); build_meista(); build_yhteys(); build_vinkit()
-    build_artikkelit(); build_tietosuoja()
-    print("Tuotettu %d sivua." % (10 + len(ARTIKKELIT)))
+    build_artikkelit(); build_tietosuoja(); build_404()
+    print("Tuotettu %d sivua." % (11 + len(ARTIKKELIT)))
 
 
 if __name__ == "__main__":
