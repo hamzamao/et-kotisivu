@@ -102,6 +102,16 @@ img { height: auto; }
 .navigaatio a:hover, .navigaatio a:focus { background: var(--tausta); }
 .navigaatio a[aria-current="page"] { background: var(--navy); color: #fff; }
 
+/* Hampurilaisnappi: piilossa työpöydällä, näkyy mobiilissa vain JS:n ollessa päällä */
+.nav-toggle {
+  display: none; align-items: center; justify-content: center;
+  width: 2.75rem; height: 2.75rem; padding: 0; flex: none;
+  background: transparent; border: 1px solid var(--reunus); border-radius: 12px;
+  color: var(--navy); cursor: pointer;
+}
+.nav-toggle:hover, .nav-toggle:focus { background: var(--tausta); }
+.nav-toggle svg { width: 1.5rem; height: 1.5rem; }
+
 /* --- Hero --- */
 .hero {
   position: relative; overflow: hidden;
@@ -336,6 +346,19 @@ main { padding-bottom: 1rem; }
 @media (max-width: 52rem) {
   .hero .sisalto { grid-template-columns: 1fr; }
   .hero-kuva { order: -1; max-width: 16rem; margin: 0 auto; }
+}
+
+/* Mobiilin pudotusvalikko: vain JS:n ollessa päällä. Ilman JS:ää valikko näkyy
+   tavalliseen tapaan (varafallback), joten nappi ei jää rikkinäiseksi. */
+@media (max-width: 48rem) {
+  .js .nav-toggle { display: inline-flex; }
+  .js .navigaatio { flex-basis: 100%; }
+  .js .navigaatio ul { display: none; }
+  .js .navigaatio.auki ul {
+    display: flex; flex-direction: column; gap: 0.25rem;
+    padding: 0.5rem 0 0.25rem;
+  }
+  .js .navigaatio.auki a { display: block; padding: 0.7rem 0.9rem; font-size: 1.05rem; }
 }
 
 @media (max-width: 40rem) {

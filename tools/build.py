@@ -48,6 +48,7 @@ I = {
     "wa": _svg('<path d="M21 11.5a8.4 8.4 0 0 1-12.3 7.4L3 21l2.2-5.6A8.4 8.4 0 1 1 21 11.5z"/>'),
     "henkilo": _svg('<circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-6 8-6s8 2 8 6"/>'),
     "merkki": _svg('<path d="M12 2 4 5v6c0 5 3.5 8.5 8 11 4.5-2.5 8-6 8-11V5l-8-3z"/><polyline points="9 12 11 14 15 10"/>'),
+    "valikko": _svg('<line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/>'),
 }
 
 LOGO_SVG = ('<svg viewBox="0 0 64 64" aria-hidden="true">'
@@ -87,8 +88,9 @@ def header(active):
         '<a class="ohita" href="#sisalto">Siirry sisältöön</a>'
         '<header class="ylatunniste"><div class="sisalto">'
         '<a class="logo" href="index.html">%s<span class="merkkiteksti">eTuki</span></a>'
-        '<nav class="navigaatio" aria-label="Päävalikko"><ul>%s</ul></nav>'
-        '</div></header>' % (LOGO_SVG, items)
+        '<button class="nav-toggle" aria-controls="paavalikko" aria-expanded="false" aria-label="Avaa valikko">%s</button>'
+        '<nav class="navigaatio" aria-label="Päävalikko"><ul id="paavalikko">%s</ul></nav>'
+        '</div></header>' % (LOGO_SVG, I["valikko"], items)
     )
 
 

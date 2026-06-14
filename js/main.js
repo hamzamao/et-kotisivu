@@ -19,7 +19,32 @@
     reveals.forEach(function (el) { io.observe(el); });
   }
 
-  // 2) Huijaustarkistuksen demo: paljasta kuplat vuoron perään, toista
+  // 2) Mobiilin valikko: hampurilaisnappi avaa/sulkee päävalikon
+  var navToggle = document.querySelector(".nav-toggle");
+  var nav = document.querySelector(".navigaatio");
+  if (navToggle && nav) {
+    var sulje = function () {
+      nav.classList.remove("auki");
+      navToggle.setAttribute("aria-expanded", "false");
+      navToggle.setAttribute("aria-label", "Avaa valikko");
+    };
+    navToggle.addEventListener("click", function () {
+      var auki = nav.classList.toggle("auki");
+      navToggle.setAttribute("aria-expanded", auki ? "true" : "false");
+      navToggle.setAttribute("aria-label", auki ? "Sulje valikko" : "Avaa valikko");
+    });
+    nav.addEventListener("click", function (e) {
+      if (e.target.closest("a")) { sulje(); }
+    });
+    document.addEventListener("keydown", function (e) {
+      if (e.key === "Escape" && nav.classList.contains("auki")) {
+        sulje();
+        navToggle.focus();
+      }
+    });
+  }
+
+  // 3) Huijaustarkistuksen demo: paljasta kuplat vuoron perään, toista
   var demo = document.querySelector(".demo");
   if (!demo) return;
   var kuplat = Array.prototype.slice.call(demo.querySelectorAll(".kupla"));
