@@ -48,6 +48,8 @@ I = {
     "henkilo": _svg('<circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-6 8-6s8 2 8 6"/>'),
     "merkki": _svg('<path d="M12 2 4 5v6c0 5 3.5 8.5 8 11 4.5-2.5 8-6 8-11V5l-8-3z"/><polyline points="9 12 11 14 15 10"/>'),
     "valikko": _svg('<line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/>'),
+    "sulje": _svg('<line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>'),
+    "laheta": _svg('<line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/>'),
 }
 
 LOGO_SVG = ('<svg viewBox="0 0 64 64" aria-hidden="true">'
@@ -160,6 +162,39 @@ FOOTER = (
 SOITA_PALKKI = ('<div class="soita-palkki"><a href="tel:%s" class="nappi">%s Soita %s</a></div>'
                 % (PUH_NUM, I["puhelin"], PUH_NAYTTO_TAVALLINEN))
 
+# ============================================================================
+# Tukiäly-chatbot: PÄÄLLE / POIS -kytkin
+# True  = chat-widget näkyy kaikilla sivuilla.
+# False = widgetiä ei tulosteta lainkaan (CSS/JS jäävät, mutta eivät tee mitään).
+# Vaihda arvo ja aja `python3 tools/build.py` → muutos kaikille sivuille.
+# Koko ominaisuus on lisäksi yhdessä git-commitissa: sen voi poistaa täysin
+# jäljettömästi komennolla  git revert <chatbot-commit>  (alkuperäinen sivu ennallaan).
+# ============================================================================
+TUKIALY_PAALLA = True
+
+# Tukiäly: kevyt skriptattu chat-apuri (alanurkka). Vastaukset js/main.js:ssä.
+# Numerot data-attribuutteina → yksi lähde (ei toistoa JS:ssä).
+CHAT_WIDGET = (
+    '<div class="tukialy" data-tukialy data-puh="%s" data-naytto="%s" data-wa="%s">'
+    '<button class="tukialy-nappi" type="button" aria-haspopup="dialog" '
+    'aria-expanded="false" aria-controls="tukialy-paneeli" aria-label="Avaa Tukiäly-apuri">'
+    '<span class="tukialy-nappi-ikoni">%s</span>'
+    '<span class="tukialy-nappi-teksti">Tukiäly</span></button>'
+    '<div class="tukialy-paneeli" id="tukialy-paneeli" role="dialog" aria-label="Tukiäly">'
+    '<div class="tukialy-ylaosa">'
+    '<span class="tukialy-avatar">%s<span class="tukialy-online" aria-hidden="true"></span></span>'
+    '<span class="tukialy-otsikot"><strong>Tukiäly</strong>'
+    '<span class="tukialy-alaotsikko">eTukin automaattinen apuri</span></span>'
+    '<button class="tukialy-sulje" type="button" aria-label="Sulje">%s</button></div>'
+    '<div class="tukialy-viestit" aria-live="polite"></div>'
+    '<div class="tukialy-pikavalinnat"></div>'
+    '<form class="tukialy-syote" autocomplete="off">'
+    '<label class="nakymaton" for="tukialy-kentta">Kirjoita kysymys</label>'
+    '<input id="tukialy-kentta" type="text" placeholder="Kirjoita kysymys…">'
+    '<button type="submit" class="tukialy-laheta" aria-label="Lähetä">%s</button>'
+    '</form></div></div>'
+) % (PUH_NUM, PUH_NAYTTO_TAVALLINEN, WA_URL, I["puhe"], I["merkki"], I["sulje"], I["laheta"])
+
 
 def page(slug, title, desc, body, active=None, extra_jsonld="", scripts=True):
     active = active or slug
@@ -189,7 +224,7 @@ def page(slug, title, desc, body, active=None, extra_jsonld="", scripts=True):
         '%s</head><body>'
     ) % (title, desc, canonical, title, desc, og_img, canonical,
          title, desc, og_img, extra_jsonld)
-    tail = SOITA_PALKKI + (('<script src="js/main.js" defer></script>') if scripts else "") + '</body></html>'
+    tail = SOITA_PALKKI + (CHAT_WIDGET if TUKIALY_PAALLA else "") + (('<script src="js/main.js" defer></script>') if scripts else "") + '</body></html>'
     return head + header(active) + '<main id="sisalto">' + body + '</main>' + FOOTER + tail
 
 

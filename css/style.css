@@ -321,6 +321,109 @@ form .nappi { border: none; cursor: pointer; margin-top: 1.25rem; }
 .soita-palkki a { display: flex; }
 .soita-palkki .nappi { width: 100%; justify-content: center; }
 
+/* --- Tukiäly: skriptattu chat-apuri (alanurkka) --- */
+.tukialy { position: fixed; right: 1rem; bottom: 1rem; z-index: 40; }
+.tukialy-nappi {
+  position: relative; display: none; align-items: center; gap: 0.5rem;
+  padding: 0.7rem 1.15rem 0.7rem 0.85rem; border: none; border-radius: 999px; cursor: pointer;
+  background: linear-gradient(135deg, var(--sininen), var(--navy));
+  color: #fff; font: inherit; font-weight: 700; font-size: 0.98rem;
+  box-shadow: var(--varjo-iso); transition: transform 0.18s ease, opacity 0.18s ease;
+}
+.js .tukialy-nappi { display: inline-flex; }
+.tukialy-nappi:hover, .tukialy-nappi:focus-visible { transform: translateY(-2px); }
+.tukialy-nappi svg { width: 1.4rem; height: 1.4rem; }
+.tukialy-nappi-ikoni { display: inline-flex; }
+.tukialy-nappi::before {
+  content: ""; position: absolute; inset: 0; border-radius: inherit;
+  animation: tukialy-syke 2.8s ease-out infinite;
+}
+@keyframes tukialy-syke {
+  0% { box-shadow: 0 0 0 0 rgba(29,78,216,0.40); }
+  70%, 100% { box-shadow: 0 0 0 14px rgba(29,78,216,0); }
+}
+.tukialy.auki .tukialy-nappi { transform: scale(0.9); opacity: 0; pointer-events: none; }
+
+.tukialy-paneeli {
+  position: absolute; right: 0; bottom: calc(100% + 0.75rem);
+  width: min(360px, calc(100vw - 2rem)); height: min(72vh, 540px);
+  display: flex; flex-direction: column; overflow: hidden;
+  background: var(--pinta); border: 1px solid var(--reunus); border-radius: 20px;
+  box-shadow: var(--varjo-iso); transform-origin: bottom right;
+  visibility: hidden; opacity: 0; transform: translateY(10px) scale(0.97); pointer-events: none;
+  transition: opacity 0.22s ease, transform 0.22s ease, visibility 0.22s;
+}
+.tukialy.auki .tukialy-paneeli { visibility: visible; opacity: 1; transform: none; pointer-events: auto; }
+
+.tukialy-ylaosa {
+  display: flex; align-items: center; gap: 0.65rem; padding: 0.85rem 1rem;
+  background: linear-gradient(135deg, var(--navy), var(--navy-2)); color: #fff;
+}
+.tukialy-avatar {
+  position: relative; display: inline-flex; align-items: center; justify-content: center;
+  width: 2.2rem; height: 2.2rem; border-radius: 50%; background: rgba(255,255,255,0.16); flex: none;
+}
+.tukialy-avatar svg { width: 1.25rem; height: 1.25rem; }
+.tukialy-online {
+  position: absolute; right: -1px; bottom: -1px; width: 0.6rem; height: 0.6rem;
+  border-radius: 50%; background: #34d399; border: 2px solid var(--navy);
+}
+.tukialy-otsikot { display: flex; flex-direction: column; line-height: 1.25; }
+.tukialy-otsikot strong { font-size: 1rem; }
+.tukialy-alaotsikko { font-size: 0.78rem; color: #c7d2e8; }
+.tukialy-sulje {
+  margin-left: auto; display: inline-flex; padding: 0.35rem; border: none; border-radius: 8px;
+  background: transparent; color: #fff; cursor: pointer; opacity: 0.85;
+}
+.tukialy-sulje:hover, .tukialy-sulje:focus-visible { background: rgba(255,255,255,0.15); opacity: 1; }
+.tukialy-sulje svg { width: 1.2rem; height: 1.2rem; }
+
+.tukialy-viestit {
+  flex: 1; overflow-y: auto; padding: 1rem; display: flex; flex-direction: column; gap: 0.55rem;
+  background: #f6f8fd;
+}
+.tukialy-kupla {
+  max-width: 85%; padding: 0.6rem 0.85rem; border-radius: 16px; font-size: 0.94rem; line-height: 1.45;
+  animation: tukialy-kupla-sisaan 0.28s ease both;
+}
+@keyframes tukialy-kupla-sisaan { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+.tukialy-kupla.botti { align-self: flex-start; background: #fff; border: 1px solid var(--reunus); border-bottom-left-radius: 5px; color: var(--teksti); }
+.tukialy-kupla.kayttaja { align-self: flex-end; background: var(--sininen); color: #fff; border-bottom-right-radius: 5px; }
+.tukialy-kupla a.tukialy-cta {
+  display: inline-flex; align-items: center; gap: 0.3rem; margin-top: 0.5rem;
+  padding: 0.4rem 0.8rem; border-radius: 999px; background: var(--korostus); color: #fff;
+  font-weight: 700; font-size: 0.85rem; text-decoration: none;
+}
+.tukialy-kupla a.tukialy-cta:hover { background: var(--korostus-tumma); }
+.tukialy-kirjoittaa {
+  align-self: flex-start; display: inline-flex; gap: 0.25rem; padding: 0.7rem 0.85rem;
+  background: #fff; border: 1px solid var(--reunus); border-radius: 16px; border-bottom-left-radius: 5px;
+}
+.tukialy-kirjoittaa span { width: 0.45rem; height: 0.45rem; border-radius: 50%; background: #9fb0cc; animation: tukialy-dot 1.2s infinite ease-in-out; }
+.tukialy-kirjoittaa span:nth-child(2) { animation-delay: 0.15s; }
+.tukialy-kirjoittaa span:nth-child(3) { animation-delay: 0.3s; }
+@keyframes tukialy-dot { 0%, 60%, 100% { transform: translateY(0); opacity: 0.5; } 30% { transform: translateY(-4px); opacity: 1; } }
+
+.tukialy-pikavalinnat { display: flex; flex-wrap: wrap; gap: 0.4rem; padding: 0 1rem 0.75rem; background: #f6f8fd; }
+.tukialy-pika { padding: 0.4rem 0.8rem; border: 1px solid var(--reunus); border-radius: 999px; background: #fff; color: var(--navy); font: inherit; font-weight: 600; font-size: 0.83rem; cursor: pointer; }
+.tukialy-pika:hover, .tukialy-pika:focus-visible { background: var(--tausta); border-color: var(--sininen); }
+
+.tukialy-syote { display: flex; gap: 0.5rem; padding: 0.7rem; border-top: 1px solid var(--reunus); background: #fff; }
+.tukialy-syote input { flex: 1; min-width: 0; border: 1px solid var(--reunus); border-radius: 999px; padding: 0.55rem 0.9rem; font: inherit; font-size: 0.95rem; }
+.tukialy-syote input:focus-visible { outline: 2px solid var(--sininen); outline-offset: 1px; }
+.tukialy-laheta { display: inline-flex; align-items: center; justify-content: center; width: 2.4rem; height: 2.4rem; flex: none; border: none; border-radius: 50%; background: var(--korostus); color: #fff; cursor: pointer; }
+.tukialy-laheta:hover { background: var(--korostus-tumma); }
+.tukialy-laheta svg { width: 1.15rem; height: 1.15rem; }
+
+@media (max-width: 40rem) {
+  .tukialy { right: 0.75rem; bottom: calc(4.7rem + env(safe-area-inset-bottom)); }
+  .tukialy-paneeli { width: calc(100vw - 1.5rem); height: min(70vh, 470px); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .tukialy-nappi::before { animation: none; }
+  .tukialy-paneeli, .tukialy-kupla, .tukialy-kirjoittaa span { animation: none !important; transition: none !important; }
+}
+
 /* --- Alatunniste --- */
 .alatunniste { background: var(--navy); color: var(--teksti-vaalea); margin-top: 4rem; padding: 3rem 0 2rem; }
 .alatunniste .sarakkeet {
