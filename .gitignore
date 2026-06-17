@@ -23,6 +23,8 @@ __pycache__/
 # Ympäristö ja salaisuudet (backend-vaihetta varten)
 .env
 .env.*
+.dev.vars
+.dev.vars.*
 
 # Riippuvuudet
 node_modules/
