@@ -52,7 +52,12 @@ yksittäisiä HTML-tiedostoja), aja skripti ja committaa tulos.
 - [ ] **Tiimikortit** (`build_meista`) – täytä oikeat nimet, roolit ja esittelyt
 - [ ] `YTUNNUS` → oikea Y-tunnus
 - [ ] `PUH_NUM` / `PUH_NAYTTO` / `WA_NUM` → oikea puhelinnumero
-- [ ] `EMAIL`, `DOMAIN` → oikea sähköposti ja verkkotunnus (myös `robots.txt`, `sitemap.xml`)
+- [ ] `EMAIL` → oikea sähköposti
+- [ ] `DOMAIN` → nyt asetettu julkaisuosoitteeseen `https://hamzamao.github.io/et-kotisivu`
+      (canonical, OG, JSON-LD tulevat tästä). Kun oma verkkotunnus (esim. `www.etuki.fi`)
+      on rekisteröity: päivitä `DOMAIN` (`tools/build.py`) + aja generaattori, päivitä
+      **käsin** `sitemap.xml` ja `robots.txt` samaan osoitteeseen, ja lisää `CNAME`-tiedosto.
+      (Huom: `sitemap.xml`/`robots.txt` eivät ole generoituja → pidä ne synkassa DOMAINin kanssa.)
 - [ ] Hinnat (kerta 79–149 €, jäsenyydet 24,90 / 39,90 €) – tarkista
 - [ ] Soittopyyntölomake (`build_yhteys`): luo lomake **EU-alueen** palveluun ja
       korvaa `formspree.io/f/LOMAKETUNNUS` (ks. tietosuoja alla)

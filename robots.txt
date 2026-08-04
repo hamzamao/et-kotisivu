@@ -1,5 +1,6 @@
 User-agent: *
 Allow: /
 
-# Päivitä oikea domain ennen julkaisua
-Sitemap: https://www.etuki.fi/sitemap.xml
+# Nykyinen julkaisuosoite (GitHub Pages). Vaihda omaksi domainiksi (esim.
+# https://www.etuki.fi/sitemap.xml) kun verkkotunnus on rekisteröity + CNAME lisätty.
+Sitemap: https://hamzamao.github.io/et-kotisivu/sitemap.xml

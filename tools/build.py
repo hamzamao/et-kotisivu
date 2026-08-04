@@ -11,7 +11,7 @@ import urllib.parse
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 # --- Paikkamerkit (vaihda oikeiksi ennen julkaisua) ---
-DOMAIN = "https://www.etuki.fi"
+DOMAIN = "https://hamzamao.github.io/et-kotisivu"
 BRAND = "eTuki"
 PUH_NUM = "+358401234567"
 PUH_NAYTTO = "040&nbsp;123&nbsp;4567"
@@ -848,7 +848,7 @@ def main():
     build_index(); build_palvelut(); build_digiturva(); build_hinnat()
     build_lahjakortti(); build_meista(); build_yhteys(); build_vinkit()
     build_artikkelit(); build_tietosuoja(); build_404()
-    print("Tuotettu %d sivua." % (11 + len(ARTIKKELIT)))
+    print("Tuotettu %d sivua." % (10 + len(ARTIKKELIT)))
 
 
 if __name__ == "__main__":
